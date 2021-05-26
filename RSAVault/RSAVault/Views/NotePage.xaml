@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:RSAVault.Models;assembly=RSAVault"
+             xmlns:resource="clr-namespace:RSAVault.Resources;assembly=RSAVault"
+             x:Class="RSAVault.Views.NotePage" x:DataType="models:Note"
+             Title="{Binding Title}" >
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <Entry HorizontalOptions="FillAndExpand" MaxLength="30" Placeholder="{x:Static resource:AppResources.Title}" Text="{Binding Title}" FontAttributes="Bold" FontSize="17"/>
+            <Editor Text="{Binding Text}"
+                    VerticalOptions="FillAndExpand" FontSize="16" MaxLength="1000"
+                    HorizontalOptions="FillAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:Kit.Forms.Controls;assembly=Kit.Forms"
+             xmlns:fonts="clr-namespace:RSAVault.Fonts;assembly=RSAVault"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:resource="clr-namespace:RSAVault.Resources;assembly=RSAVault"
+             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:viewModels="clr-namespace:RSAVault.ViewModels;assembly=RSAVault"
+             x:Class="RSAVault.Views.FromTextPage" Title="{x:Static resource:AppResources.FromText}">
+    <ContentPage.BindingContext>
+        <viewModels:FromTextPageViewModel x:Name="Model"/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <Label Text="{x:Static resource:AppResources.Certificate}" FontAttributes="Bold" FontSize="18"/>
+                <pancakeView:PancakeView Margin="0,5" Padding="5"
+                                         xct:TouchEffect.NormalBackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundSecondaryDarkColor},Light={StaticResource BackgroundSecondaryLightColor}}"
+                                         xct:TouchEffect.PressedBackgroundColor="LightGray"
+                                         xct:TouchEffect.NativeAnimationColor="LightGray"
+                                         xct:TouchEffect.PressedScale="0.99" 
+                                         xct:TouchEffect.CommandParameter="{Binding .}"
+                                         xct:TouchEffect.Command="{Binding ChangeCertificateCommand}"
+                                         xct:TouchEffect.NativeAnimation="True">
+                    <StackLayout Orientation="Horizontal">
+                        <Image VerticalOptions="Center">
+                            <Image.Source>
+                                <FontImageSource
+                                    Color="{StaticResource AccentColor}"
+                                    FontFamily="{x:Static fonts:FontelloIcons.Font}"
+                                    Glyph="{x:Static fonts:FontelloIcons.Certificate}"/>
+                            </Image.Source>
+                        </Image>
+                        <StackLayout Padding="10" VerticalOptions="CenterAndExpand">
+                            <Label FontSize="14" FontAttributes="Bold">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{x:Static resource:AppResources.Name}"/>
+                                        <Span Text=" "/>
+                                        <Span Text="{Binding Certificate.Name}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label FontSize="14" FontAttributes="Bold">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{x:Static resource:AppResources.Expire}"/>
+                                        <Span Text=" "/>
+                                    <Span Text="{Binding Certificate.DisplayEndDate}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+                    </StackLayout>
+                    </StackLayout>
+                </pancakeView:PancakeView>
+
+            <Label Text="{x:Static resource:AppResources.Text}" FontAttributes="Bold" FontSize="18"/>
+            <Editor Text="{Binding Text}" AutoSize="TextChanges" HeightRequest="80" VerticalOptions="FillAndExpand"/>
+            <Label Text="{x:Static resource:AppResources.Encrypted}" FontAttributes="Bold" FontSize="18"/>
+        <Editor AutoSize="TextChanges" IsReadOnly="True" HeightRequest="80" VerticalOptions="FillAndExpand"/>
+
+        <Grid ColumnDefinitions="*,*" VerticalOptions="End">
+                <controls:ArrowButton Title="{x:Static resource:AppResources.Share}" 
+                                      VerticalOptions="FillAndExpand"
+                                      Command="{Binding ShareCommand}"
+                                  IconHeightRequest="30">
+                <controls:ArrowButton.Icon>
+                    <FontImageSource FontFamily="{x:Static fonts:FontelloIcons.Font}"
+                                     Glyph="{x:Static fonts:FontelloIcons.Share}" 
+                                     Color="{AppThemeBinding Dark={StaticResource PrimaryDarkColor},Light={StaticResource PrimaryLightColor}}" Size="30"/>
+                </controls:ArrowButton.Icon>
+            </controls:ArrowButton>
+                <controls:ArrowButton Title="{x:Static resource:AppResources.SaveAsNote}" Grid.Column="1"  VerticalOptions="FillAndExpand"
+                                  IconHeightRequest="30"
+                                  Command="{Binding SaveAsNoteCommand}">
+                <controls:ArrowButton.Icon>
+                    <FontImageSource FontFamily="{x:Static fonts:FontelloIcons.Font}"
+                                     Glyph="{x:Static fonts:FontelloIcons.Note}" 
+                                     Color="{AppThemeBinding Dark={StaticResource PrimaryDarkColor},Light={StaticResource PrimaryLightColor}}" Size="30"/>
+                </controls:ArrowButton.Icon>
+            </controls:ArrowButton>
+            </Grid>
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

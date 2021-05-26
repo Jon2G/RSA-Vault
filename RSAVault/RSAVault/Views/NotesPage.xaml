@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:fonts="clr-namespace:RSAVault.Fonts;assembly=RSAVault"
+             xmlns:fonts2="clr-namespace:Kit.Forms.Fonts;assembly=Kit.Forms"
+             xmlns:controls="clr-namespace:Kit.Forms.Controls;assembly=Kit.Forms"
+             xmlns:resource="clr-namespace:RSAVault.Resources;assembly=RSAVault"
+             xmlns:viewModels="clr-namespace:RSAVault.ViewModels;assembly=RSAVault"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:models="clr-namespace:RSAVault.Models;assembly=RSAVault"
+             x:DataType="viewModels:NotesPageViewModel"
+             x:Class="RSAVault.Views.NotesPage" Title="{x:Static resource:AppResources.Notes}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Command="{Binding AddCommand}" >
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="{x:Static fonts:FontelloIcons.Font}" Glyph="{x:Static fonts:FontelloIcons.Add}" 
+                                 Color="{StaticResource LightTextColor}" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.BindingContext>
+        <viewModels:NotesPageViewModel x:Name="Model"/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView SeparatorColor="Gray" VerticalOptions="FillAndExpand" RowHeight="70" HasUnevenRows="False" IsPullToRefreshEnabled="False" SelectionMode="None">
+                <ListView.ItemsSource>
+                    <x:Array Type="{x:Type models:Note}">
+                        <models:Note Text="Hola soy el texto" LastModificationTime="{x:Static x:DateTime.Now}" Id="-1" Title="Primera linea del texo"/>
+                        <models:Note Text="Hola soy el texto" LastModificationTime="{x:Static x:DateTime.Now}" Id="-1" Title="Primera linea del texo"/>
+                    </x:Array>
+                </ListView.ItemsSource>
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Note">
+                        <ViewCell>
+                            <SwipeView MinimumHeightRequest="40">
+                                <SwipeView.LeftItems>
+                                    <SwipeItemView>
+
+                                        <ContentView VerticalOptions="FillAndExpand">
+
+                                            <pancakeView:PancakeView Padding="5" CornerRadius="0" Margin="0" 
+                                                                     VerticalOptions="FillAndExpand" 
+                                                                     BackgroundColor="{StaticResource DangerRed}">
+                                                <StackLayout VerticalOptions="CenterAndExpand">
+                                                    <Image>
+                                                        <Image.Source>
+                                                            <FontImageSource Size="18"
+                                                                             Color="{StaticResource LightTextColor}"
+                                                                             FontFamily="{x:Static fonts:FontelloIcons.Font}"
+                                                                             Glyph="{x:Static fonts:FontelloIcons.TrashBin}"/>
+                                                        </Image.Source>
+                                                    </Image>
+                                                    <Label FontSize="18" FontAttributes="Bold" Text="Eliminar" TextColor="{StaticResource LightTextColor}"/>
+                                                </StackLayout>
+                                            </pancakeView:PancakeView>
+                                        </ContentView>
+
+
+                                    </SwipeItemView>
+                                    <SwipeItemView>
+                                        <ContentView VerticalOptions="FillAndExpand">
+                                            <pancakeView:PancakeView CornerRadius="0" 
+                                                                     Padding="5" Margin="0" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource AccentColor}">
+                                                <StackLayout VerticalOptions="CenterAndExpand">
+                                                    <Image>
+                                                        <Image.Source>
+                                                            <FontImageSource Size="18"
+                                                                             Color="{StaticResource LightTextColor}"
+                                                                             FontFamily="{x:Static fonts:FontelloIcons.Font}"
+                                                                             Glyph="{x:Static fonts:FontelloIcons.Share}"/>
+                                                        </Image.Source>
+                                                    </Image>
+                                                    <Label FontSize="18" FontAttributes="Bold" Text="Share" TextColor="{StaticResource LightTextColor}"/>
+                                                </StackLayout>
+                                            </pancakeView:PancakeView>
+                                        </ContentView>
+                                    </SwipeItemView>
+                                
+
+                                </SwipeView.LeftItems>
+                                <ContentView>
+                                    <!--<controls:ArrowButton Title="Linea 1"  TitleFontSize="16"
+                                                          SubTitle="12/08/1998 21:00" SubTitleFontSize="16"
+                                                          IconHeightRequest="30"/>-->
+
+                                    <pancakeView:PancakeView Margin="0" Padding="5"                                                                     
+                                                             xct:TouchEffect.NormalBackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundSecondaryDarkColor},Light={StaticResource BackgroundSecondaryLightColor}}"
+                                                             xct:TouchEffect.PressedBackgroundColor="LightGray"
+                                                             xct:TouchEffect.NativeAnimationColor="LightGray"
+                                                             xct:TouchEffect.PressedScale="0.99" 
+                                                             xct:TouchEffect.CommandParameter="{Binding .}"
+                                                             xct:TouchEffect.Command="{Binding ViewNoteCommand,Source={x:Reference Model}}"
+                                                             xct:TouchEffect.NativeAnimation="True">
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                            <StackLayout Padding="10" 
+                                                         VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
+                                                <Label Text="{Binding Title}" FontSize="16" FontAttributes="Bold"/>
+                                                <Label Text="{Binding DisplayLastModificationTime}" FontAttributes="Bold" FontSize="12" />
+                                            </StackLayout>
+                                            <Image Margin="0,0,10,0" VerticalOptions="Center" HorizontalOptions="End">
+                                                <Image.Source>
+                                                    <FontImageSource
+                                                        Color="{StaticResource AccentColor}"
+                                                        FontFamily="{x:Static fonts2:FontelloIcons.Font}"
+                                                        Glyph="{x:Static fonts2:FontelloIcons.RightArrow}"/>
+                                                </Image.Source>
+                                            </Image>
+                                        </StackLayout>
+                                        
+                                    </pancakeView:PancakeView>
+                                </ContentView>
+                            </SwipeView>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

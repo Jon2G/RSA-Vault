@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RSAVault.Views.AboutPage"
+             xmlns:fonts="clr-namespace:RSAVault.Fonts;assembly=RSAVault"
+             xmlns:vm="clr-namespace:RSAVault.ViewModels"
+             xmlns:resource="clr-namespace:RSAVault.Resources;assembly=RSAVault"
+             xmlns:controls="clr-namespace:Kit.Forms.Controls;assembly=Kit.Forms"
+             Title="{x:Static resource:AppResources.AboutUs}"
+             x:DataType="vm:AboutPageViewModel">
+    <ContentPage.BindingContext>
+        <vm:AboutPageViewModel />
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <StackLayout>
+
+            <Grid VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <StackLayout 
+                 BackgroundColor="{StaticResource AccentColor}"
+                    VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+
+                        <Image Source="icon.png" HeightRequest="80" WidthRequest="40" />
+                        <Label VerticalOptions="Center"  TextColor="{StaticResource LightTextColor}"
+                               FontAttributes="Bold">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{x:Static resource:AppResources.MainTitle}" FontSize="20" />
+                                    <Span Text=" 1.0.0" FontSize="10"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label />
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout Grid.Row="1" Orientation="Vertical" Padding="20,12,20,12" Spacing="10" VerticalOptions="FillAndExpand">
+                    <Label Text="{x:Static resource:AppResources.DevelopedFor}" FontSize="20"  TextColor="{AppThemeBinding Light=Black,Dark=White}"/>
+
+
+                    <controls:ArrowButton Title="{x:Static resource:AppResources.GitHub}" 
+                                          
+                                              IsArrowVisible="False" Command="{Binding GitHubCommand}">
+                        <controls:ArrowButton.Icon>
+                            <FontImageSource Color="Black" FontFamily="{x:Static fonts:FontelloIcons.Font}" Glyph="{x:Static fonts:FontelloIcons.Github}"/>
+                        </controls:ArrowButton.Icon>
+                    </controls:ArrowButton>
+                    <StackLayout Margin="0,0">
+                        <controls:ArrowButton Title="{x:Static resource:AppResources.ReportBug}"
+                                              TextColor="{AppThemeBinding Light=Black,Dark=White}"
+                                              
+                                              IsArrowVisible="False" Command="{Binding ReportBugCommand}">
+                            <controls:ArrowButton.Icon>
+                                <FontImageSource Color="Black" FontFamily="{x:Static fonts:FontelloIcons.Font}" Glyph="{x:Static fonts:FontelloIcons.Github}"/>
+                            </controls:ArrowButton.Icon>
+                        </controls:ArrowButton>
+                        <controls:ArrowButton Title="{x:Static resource:AppResources.RequestFeature}"
+                                              TextColor="{AppThemeBinding Light=Black,Dark=White}"
+                                              
+                                                  IsArrowVisible="False" Command="{Binding RequestFeatureCommand}">
+                            <controls:ArrowButton.Icon>
+                                <FontImageSource Color="Black" FontFamily="{x:Static fonts:FontelloIcons.Font}" Glyph="{x:Static fonts:FontelloIcons.Github}"/>
+                            </controls:ArrowButton.Icon>
+                        </controls:ArrowButton>
+                    </StackLayout>
+
+
+                    <controls:ArrowButton Title="{x:Static resource:AppResources.Xamarin}" 
+                                          TextColor="{AppThemeBinding Light=Black,Dark=White}"
+                                          
+                                              Icon="xamarin_icon.png"
+                                              IsArrowVisible="False" Command="{Binding XamarinCommand}"/>
+
+                    <controls:ArrowButton Title="jonathan.edu.gar@gmail.com"
+                                          TextColor="{AppThemeBinding Light=Black,Dark=White}"
+                                          
+                                              IsArrowVisible="False" Command="{Binding GMailCommand}">
+                        <controls:ArrowButton.Icon>
+                            <FontImageSource Color="Firebrick" FontFamily="{x:Static fonts:FontelloIcons.Font}" Glyph="{x:Static fonts:FontelloIcons.GMail}"/>
+                        </controls:ArrowButton.Icon>
+                    </controls:ArrowButton>
+
+                    <controls:ArrowButton Title="{x:Static resource:AppResources.BuyMeACoffe}" 
+                                          Icon="bmc_logo_yellow.png"  TextColor="{AppThemeBinding Light=Black,Dark=White}"
+                                          ColorBackground="#ffdd00"
+                                          IsArrowVisible="False" Command="{Binding BuyMeACoffeCommand}"/>
+
+                    <Label Text="{x:Static resource:AppResources.Licenses}"/>
+                    <controls:ArrowButton 
+                                          
+                                          TextColor="{AppThemeBinding Light=Black,Dark=White}"
+                                          IsArrowVisible="False" Title="A Mathematical Theory of Communication" 
+                                          SubTitle="Bell System Technical Journal. July-1948"/>
+
+                    <controls:ArrowButton 
+                        
+                        TextColor="{AppThemeBinding Light=Black,Dark=White}"
+                        IsArrowVisible="False" Title="Sample coins File Ephesos_620-600_BC.jpg" 
+                                              SubTitle="https://www.cngcoins.com/"/>
+
+                    <controls:ArrowButton 
+                        
+                        TextColor="{AppThemeBinding Light=Black,Dark=White}"
+                            IsArrowVisible="False" Title="App icon designed by Freepik from Flaticon" 
+                                              SubTitle="https://www.flaticon.com/matrix_3815250"/>
+
+                    <controls:ArrowButton 
+                        
+                        TextColor="{AppThemeBinding Light=Black,Dark=White}"
+                            IsArrowVisible="False" Title="App menu icons by Fontello" 
+                                              SubTitle="https://github.com/fontello/fontello"/>
+
+                    <Label VerticalOptions="End" Text="{x:Static resource:AppResources.SpecialThanks}" FontSize="18" Padding="0,0,0,0" 
+                           TextColor="{AppThemeBinding Light=Black,Dark=White}"/>
+                    <Label VerticalOptions="End" Text="{x:Static resource:AppResources.DevelopedBy}" FontSize="18" Padding="0,0,0,0" Margin="0,5" 
+                           TextColor="{AppThemeBinding Light=Black,Dark=White}"/>
+                </StackLayout>
+
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
