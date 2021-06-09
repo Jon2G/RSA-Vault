@@ -23,14 +23,8 @@
         <viewModels:NotesPageViewModel x:Name="Model"/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
-            <ListView SeparatorColor="Gray" VerticalOptions="FillAndExpand" RowHeight="70" HasUnevenRows="False" IsPullToRefreshEnabled="False" SelectionMode="None">
-                <ListView.ItemsSource>
-                    <x:Array Type="{x:Type models:Note}">
-                        <models:Note Text="Hola soy el texto" LastModificationTime="{x:Static x:DateTime.Now}" Id="-1" Title="Primera linea del texo"/>
-                        <models:Note Text="Hola soy el texto" LastModificationTime="{x:Static x:DateTime.Now}" Id="-1" Title="Primera linea del texo"/>
-                    </x:Array>
-                </ListView.ItemsSource>
+        <Grid>
+            <ListView ItemsSource="{Binding Notes}"  SeparatorColor="Gray" VerticalOptions="FillAndExpand" RowHeight="70" HasUnevenRows="False" IsPullToRefreshEnabled="False" SelectionMode="None">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="models:Note">
                         <ViewCell>
@@ -116,7 +110,19 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
-        </StackLayout>
+            <ContentView VerticalOptions="FillAndExpand" IsVisible="{Binding IsEmpty}">
+                <StackLayout VerticalOptions="Center">
+                    <Label Text="{x:Static resource:AppResources.NoNotes}" FontSize="18" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold"/>
+                    <Image>
+                        <Image.Source>
+                            <FontImageSource Size="50"
+                                             Color="{StaticResource AccentColor}"
+                                             FontFamily="{x:Static fonts:FontelloIcons.Font}"
+                                             Glyph="{x:Static fonts:FontelloIcons.Note}"/>
+                        </Image.Source>
+                    </Image>
+                </StackLayout>
+            </ContentView>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

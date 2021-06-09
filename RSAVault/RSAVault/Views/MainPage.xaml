@@ -4,6 +4,7 @@
              xmlns:resource="clr-namespace:RSAVault.Resources;assembly=RSAVault"
              xmlns:controls="clr-namespace:Kit.Forms.Controls;assembly=Kit.Forms"
              xmlns:fonts="clr-namespace:RSAVault.Fonts;assembly=RSAVault"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              xmlns:viewModels="clr-namespace:RSAVault.ViewModels;assembly=RSAVault"
              x:Class="RSAVault.Views.MainPage"
              Title="{x:Static resource:AppResources.MainTitle}">
@@ -12,12 +13,12 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout Margin="5">
-            <controls:ArrowButton Title="{x:Static resource:AppResources.CertificatesKeys}"
+            <controls:ArrowButton Title="{x:Static resource:AppResources.Keychain}"
                                   IconHeightRequest="30"
                                   Command="{Binding CertificatesCommand,Source={x:Reference Model}}">
                 <controls:ArrowButton.Icon>
                     <FontImageSource FontFamily="{x:Static fonts:FontelloIcons.Font}"
-                                     Glyph="{x:Static fonts:FontelloIcons.Certificate}" 
+                                     Glyph="{x:Static fonts:FontelloIcons.Key}" 
                                      Color="{AppThemeBinding Light={StaticResource DarkTextColor},Dark={StaticResource LightTextColor}}" Size="30"/>
                 </controls:ArrowButton.Icon>
             </controls:ArrowButton>
@@ -55,7 +56,10 @@
                 </controls:ArrowButton.Icon>
             </controls:ArrowButton>
 
-            <controls:ArrowButton Title="{x:Static resource:AppResources.FingerPrint}"  
+
+
+
+            <!--<controls:ArrowButton Title="{x:Static resource:AppResources.FingerPrint}"  
                                   IconHeightRequest="30"
                                   Command="{Binding FingerPrintCommand}">
                 <controls:ArrowButton.Icon>
@@ -63,8 +67,46 @@
                                      Glyph="{x:Static fonts:FontelloIcons.CircleLock}" 
                                      Color="{AppThemeBinding Light={StaticResource DarkTextColor},Dark={StaticResource LightTextColor}}" Size="30"/>
                 </controls:ArrowButton.Icon>
-            </controls:ArrowButton>
+            </controls:ArrowButton>-->
 
+            <ContentView>
+                <ContentView.Padding>
+                    <OnPlatform x:TypeArguments="Thickness">
+                        <On Platform="iOS">5</On>
+                        <On Platform="Android">3</On>
+                    </OnPlatform>
+                </ContentView.Padding>
+                <StackLayout >
+                    <Frame  Padding="5"
+                    BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundSecondaryDarkColor},Light={StaticResource BackgroundSecondaryLightColor}}"
+                   xct:TouchEffect.NormalBackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundSecondaryDarkColor},Light={StaticResource BackgroundSecondaryLightColor}}"
+                   xct:TouchEffect.PressedBackgroundColor="LightGray"
+                   xct:TouchEffect.NativeAnimationColor="LightGray"
+                   xct:TouchEffect.PressedScale="0.99" VerticalOptions="FillAndExpand"
+                   xct:TouchEffect.Command="{Binding FingerPrintCommand}"
+                   xct:TouchEffect.NativeAnimation="True" >
+                        <Grid ColumnDefinitions="Auto,*,Auto" Margin="0">
+
+                            <Switch IsToggled="{Binding Settings.IsFingerPrintActive}" ThumbColor="{AppThemeBinding Dark={StaticResource BackgroundSecondaryDarkColor},Light={StaticResource BackgroundSecondaryLightColor}}"/>
+
+
+                            <StackLayout Margin="10,5" Grid.Column="1">
+                                <Label Text="{x:Static resource:AppResources.FingerPrint}"  />
+                            </StackLayout>
+
+                            <Image Margin="10,0" Grid.Column="2" VerticalOptions="CenterAndExpand" IsVisible="{Binding IsArrowVisible}">
+                                <Image.Source>
+                                    <FontImageSource Size="30"
+                                             Glyph="{x:Static fonts:FontelloIcons.CircleLock}"  
+                                             FontFamily="{x:Static fonts:FontelloIcons.Font}" 
+                                             Color="{StaticResource DarkTextColor}"/>
+                                </Image.Source>
+                            </Image>
+                            <Label />
+                        </Grid>
+                    </Frame>
+                </StackLayout>
+            </ContentView>
             <controls:ArrowButton Title="{x:Static resource:AppResources.ChangeLanguage}"  
                                   IconHeightRequest="30"
                                   Command="{Binding ChangeLanguajeCommand}">

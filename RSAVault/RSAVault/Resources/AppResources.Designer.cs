@@ -79,11 +79,38 @@ namespace RSAVault.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Alias:.
+        /// </summary>
+        internal static string Alias {
+            get {
+                return ResourceManager.GetString("Alias", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Por favor permita el acceso.
         /// </summary>
         internal static string AllowAccess {
             get {
                 return ResourceManager.GetString("AllowAccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ya existe una llave con este nombre, proporcione un nombre diferente.
+        /// </summary>
+        internal static string AlReadyExists {
+            get {
+                return ResourceManager.GetString("AlReadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Autenticación fallida..
+        /// </summary>
+        internal static string AuthFailed {
+            get {
+                return ResourceManager.GetString("AuthFailed", resourceCulture);
             }
         }
         
@@ -102,33 +129,6 @@ namespace RSAVault.Resources {
         internal static string Cancel {
             get {
                 return ResourceManager.GetString("Cancel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Certificado.
-        /// </summary>
-        internal static string Certificate {
-            get {
-                return ResourceManager.GetString("Certificate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Certificados.
-        /// </summary>
-        internal static string Certificates {
-            get {
-                return ResourceManager.GetString("Certificates", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Certificados &amp; llaves.
-        /// </summary>
-        internal static string CertificatesKeys {
-            get {
-                return ResourceManager.GetString("CertificatesKeys", resourceCulture);
             }
         }
         
@@ -165,15 +165,6 @@ namespace RSAVault.Resources {
         internal static string Continue {
             get {
                 return ResourceManager.GetString("Continue", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Crear certificado.
-        /// </summary>
-        internal static string CreateCertificate {
-            get {
-                return ResourceManager.GetString("CreateCertificate", resourceCulture);
             }
         }
         
@@ -246,6 +237,15 @@ namespace RSAVault.Resources {
         internal static string FingerPrint {
             get {
                 return ResourceManager.GetString("FingerPrint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El leector de huellas y/o bloque de pantalla no esta disponible.
+        /// </summary>
+        internal static string FingerPrintNotAvaible {
+            get {
+                return ResourceManager.GetString("FingerPrintNotAvaible", resourceCulture);
             }
         }
         
@@ -367,11 +367,56 @@ namespace RSAVault.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Llave.
+        /// </summary>
+        internal static string Key {
+            get {
+                return ResourceManager.GetString("Key", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Llavero.
+        /// </summary>
+        internal static string Keychain {
+            get {
+                return ResourceManager.GetString("Keychain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Llaves.
+        /// </summary>
+        internal static string Keys {
+            get {
+                return ResourceManager.GetString("Keys", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Licencias y créditos.
         /// </summary>
         internal static string Licenses {
             get {
                 return ResourceManager.GetString("Licenses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Accede con tu huella digital.
+        /// </summary>
+        internal static string LockReason {
+            get {
+                return ResourceManager.GetString("LockReason", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bloqueo de aplicación.
+        /// </summary>
+        internal static string LockTitle {
+            get {
+                return ResourceManager.GetString("LockTitle", resourceCulture);
             }
         }
         
@@ -385,6 +430,15 @@ namespace RSAVault.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Crear llave.
+        /// </summary>
+        internal static string MakeKey {
+            get {
+                return ResourceManager.GetString("MakeKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Meses.
         /// </summary>
         internal static string Months {
@@ -394,20 +448,49 @@ namespace RSAVault.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nombre: .
+        ///   Looks up a localized string similar to Debe ingresar un nombre valido para esta llave.
         /// </summary>
-        internal static string Name {
+        internal static string MustProvideName {
             get {
-                return ResourceManager.GetString("Name", resourceCulture);
+                return ResourceManager.GetString("MustProvideName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nuevo certificado.
+        ///   Looks up a localized string similar to Debe ingresar una contraseña segura de al menos 8 caracteres para proteger esta llave.
         /// </summary>
-        internal static string NewCertificate {
+        internal static string MustProvidePassword {
             get {
-                return ResourceManager.GetString("NewCertificate", resourceCulture);
+                return ResourceManager.GetString("MustProvidePassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nueva llave.
+        /// </summary>
+        internal static string NewKey {
+            get {
+                return ResourceManager.GetString("NewKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No cuenta con ningúna llave
+        ///Puede una llave ahora..
+        /// </summary>
+        internal static string NoKeys {
+            get {
+                return ResourceManager.GetString("NoKeys", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No tiene ninguna nota por ahora.
+        ///Puede comenzar creando una ahora.
+        /// </summary>
+        internal static string NoNotes {
+            get {
+                return ResourceManager.GetString("NoNotes", resourceCulture);
             }
         }
         

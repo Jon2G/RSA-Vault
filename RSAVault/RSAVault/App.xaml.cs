@@ -23,7 +23,7 @@ namespace RSAVault
                 Thread.CurrentThread.CurrentUICulture = MexCultureInfo;
                 AppResources.Culture = MexCultureInfo;
             }
-            MainPage = new AppShell();
+            MainPage = new SplashScreen();
         }
 
 

@@ -17,5 +17,11 @@ namespace RSAVault.Views
      
             InitializeComponent();
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            Task.Run(this.Model.Refresh);
+        }
     }
 }

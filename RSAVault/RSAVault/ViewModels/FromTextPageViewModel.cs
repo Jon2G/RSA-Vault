@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
 using Forms9Patch;
+using Kit.Forms.Security.RSA;
 using Kit.Model;
-using RSALibrary;
 using RSAVault.Models;
 using RSAVault.Views;
 using Xamarin.Essentials;
@@ -15,11 +15,16 @@ namespace RSAVault.ViewModels
     public class FromTextPageViewModel : ModelBase
     {
         private ICommand changeCertificateCommand;
-        public ICommand ChangeCertificateCommand => changeCertificateCommand ??= new Command(ChangeCertificate);
+        public ICommand ChangeCertificateCommand => changeCertificateCommand ??= new Command(ChangeKey);
         private ICommand shareCommand;
         public ICommand ShareCommand => shareCommand ??= new Command(Share);
         private ICommand saveAsNoteCommand;
         public ICommand SaveAsNoteCommand => saveAsNoteCommand ??= new Command(SaveAsNote);
+
+        private ICommand _UpdateCommand;
+        public ICommand UpdateCommand => _UpdateCommand ??= new Command(Update);
+
+
         private string _Text;
 
         public string Text
@@ -31,19 +36,33 @@ namespace RSAVault.ViewModels
                 Raise(() => Text);
             }
         }
+        private string _Encrypted;
 
-        private Certificate _Certificate;
-
-        public Certificate Certificate
+        public string Encrypted
         {
-            get => _Certificate;
+            get => _Encrypted;
             set
             {
-                _Certificate = value;
-                Raise(()=> Certificate);
+                _Encrypted = value;
+                Raise(() => Encrypted);
             }
         }
+        
+        private Key _Key;
 
+        public Key Key
+        {
+            get => _Key;
+            set
+            {
+                _Key = value;
+                Raise(()=> Key);
+            }
+        }
+        public FromTextPageViewModel()
+        {
+            this.Key = KeyChain.PersonalKey;
+        }
         public async void SaveAsNote()
         {
             var note = new Note() { Text = this.Text };
@@ -55,20 +74,24 @@ namespace RSAVault.ViewModels
         {
 
         }
-        public async void ChangeCertificate()
+        private void Update()
+        {
+            this.Encrypted = Key.EncryptToString(Text);
+        }
+        public async void ChangeKey()
         {
             Forms9Patch.Audio.PlaySoundEffect(SoundEffect.KeyClick, EffectMode.On);
             HapticFeedback.Perform(HapticFeedbackType.Click);
             var certificates = new CertificatesPage();
-            certificates.CertificateClicked = new Command<Certificate>(ChangeCertificate);
+            certificates.Model.KeyClickedCommand = new Command<Key>(ChangeKey);
             await Shell.Current.Navigation.PushAsync(certificates, true);
         }
-        private async void ChangeCertificate(Certificate Certificate)
+        private async void ChangeKey(Key Certificate)
         {
             Forms9Patch.Audio.PlaySoundEffect(SoundEffect.KeyClick, EffectMode.On);
             HapticFeedback.Perform(HapticFeedbackType.Click);
             await Shell.Current.Navigation.PopAsync( true);
-            this.Certificate = Certificate;
+            this.Key = Certificate;
         }
     }
 }

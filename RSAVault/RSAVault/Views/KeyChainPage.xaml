@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:fonts="clr-namespace:RSAVault.Fonts;assembly=RSAVault"
+             xmlns:system="clr-namespace:System;assembly=netstandard"
+             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:resource="clr-namespace:RSAVault.Resources;assembly=RSAVault"
+             xmlns:viewModels="clr-namespace:RSAVault.ViewModels;assembly=RSAVault"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:models="clr-namespace:RSAVault.Models;assembly=RSAVault" 
+             xmlns:rsa="clr-namespace:Kit.Forms.Security.RSA;assembly=Kit.Forms"
+             x:Name="Me"
+             x:Class="RSAVault.Views.CertificatesPage" x:DataType="viewModels:KeyChainPageViewModel"
+             Title="{x:Static resource:AppResources.Keychain}">
+    <ContentPage.BindingContext>
+        <viewModels:KeyChainPageViewModel x:Name="Model" x:FieldModifier="public" />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout Padding="10"  VerticalOptions="FillAndExpand">
+            <Grid VerticalOptions="FillAndExpand">
+                <ListView RowHeight="80" ItemsSource="{Binding Keys}" IsPullToRefreshEnabled="False"
+                      IsRefreshing="{Binding Loading}"
+                      VerticalOptions="FillAndExpand"  SelectionMode="None">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="rsa:Key">
+                            <ViewCell>
+                                <ContentView Margin="0,5" VerticalOptions="FillAndExpand">
+                                    <SwipeView >
+                                        <SwipeView.LeftItems>
+                                            <SwipeItemView>
+                                                <ContentView VerticalOptions="FillAndExpand">
+                                                    <pancakeView:PancakeView Padding="5" Margin="5" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource AccentColor}">
+                                                        <StackLayout VerticalOptions="CenterAndExpand">
+                                                            <Image>
+                                                                <Image.Source>
+                                                                    <FontImageSource Size="18"
+                                                                             Color="{StaticResource LightTextColor}"
+                                                                             FontFamily="{x:Static fonts:FontelloIcons.Font}"
+                                                                             Glyph="{x:Static fonts:FontelloIcons.Share}"/>
+                                                                </Image.Source>
+                                                            </Image>
+                                                            <Label FontSize="18" FontAttributes="Bold" Text="Share" TextColor="{StaticResource LightTextColor}"/>
+                                                        </StackLayout>
+                                                    </pancakeView:PancakeView>
+                                                </ContentView>
+                                            </SwipeItemView>
+                                            <SwipeItemView>
+
+
+
+                                                <pancakeView:PancakeView  Padding="5"  Margin="5" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource DangerRed}">
+                                                    <StackLayout VerticalOptions="CenterAndExpand">
+                                                        <Image>
+                                                            <Image.Source>
+                                                                <FontImageSource Size="18"
+                                                                             Color="{StaticResource LightTextColor}"
+                                                                             FontFamily="{x:Static fonts:FontelloIcons.Font}"
+                                                                             Glyph="{x:Static fonts:FontelloIcons.TrashBin}"/>
+                                                            </Image.Source>
+                                                        </Image>
+                                                        <Label FontSize="18" FontAttributes="Bold" Text="{x:Static resource:AppResources.Delete}" TextColor="{StaticResource LightTextColor}"/>
+                                                    </StackLayout>
+                                                </pancakeView:PancakeView>
+
+
+                                            </SwipeItemView>
+
+                                        </SwipeView.LeftItems>
+                                        <ContentView >
+                                            <pancakeView:PancakeView Margin="0" Padding="5"
+                                                                     xct:TouchEffect.NormalBackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundSecondaryDarkColor},Light={StaticResource BackgroundSecondaryLightColor}}"
+                                                                     xct:TouchEffect.PressedBackgroundColor="LightGray"
+                                                                     xct:TouchEffect.NativeAnimationColor="LightGray"
+                                                                     xct:TouchEffect.PressedScale="0.99" 
+                                                                     xct:TouchEffect.CommandParameter="{Binding .}"
+                                                                     xct:TouchEffect.Command="{Binding KeyClickedCommand,Source={x:Reference Model}}"
+                                                                     xct:TouchEffect.NativeAnimation="True">
+                                                        <StackLayout Orientation="Horizontal">
+                                                            <Image VerticalOptions="Center">
+                                                                <Image.Source>
+                                                                    <FontImageSource
+                                                        Color="{StaticResource AccentColor}"
+                                                        FontFamily="{x:Static fonts:FontelloIcons.Font}"
+                                                        Glyph="{x:Static fonts:FontelloIcons.Key}"/>
+                                                                </Image.Source>
+                                                            </Image>
+                                                            <StackLayout Padding="10" VerticalOptions="CenterAndExpand">
+                                                                <Label Text="Nombre: Certificado #001" FontSize="14" FontAttributes="Bold">
+                                                                    <Label.FormattedText>
+                                                                        <FormattedString>
+                                                                            <Span Text="{x:Static resource:AppResources.Alias}"/>
+                                                                            <Span Text="{Binding Name}"/>
+                                                                        </FormattedString>
+                                                                    </Label.FormattedText>
+                                                                </Label>
+                                                            </StackLayout>
+                                                        </StackLayout>
+                                                    </pancakeView:PancakeView>
+                                        </ContentView>
+                                    </SwipeView>
+                                </ContentView>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <ContentView VerticalOptions="FillAndExpand" IsVisible="{Binding IsEmpty}">
+        <StackLayout VerticalOptions="Center">
+            <Label Text="{x:Static resource:AppResources.NoKeys}" FontSize="18" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold"/>
+            <Image>
+                <Image.Source>
+                    <FontImageSource Size="50"
+                                     Color="{StaticResource AccentColor}"
+                                     FontFamily="{x:Static fonts:FontelloIcons.Font}"
+                                     Glyph="{x:Static fonts:FontelloIcons.Key}"/>
+                </Image.Source>
+            </Image>
+        </StackLayout>
+    </ContentView>
+            </Grid>
+            <Button HorizontalOptions="FillAndExpand" 
+                    Text="{x:Static resource:AppResources.NewKey}" 
+                    Command="{Binding NewKeyCommand}"
+                    VerticalOptions="Center" Padding="5,0" Margin="0"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

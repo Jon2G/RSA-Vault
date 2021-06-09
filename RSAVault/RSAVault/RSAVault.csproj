@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Plugin.Fingerprint" Version="2.1.4" />
     <PackageReference Include="Xamarin.CommunityToolkit" Version="1.1.0" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
@@ -25,7 +26,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\Kit\Kit.Forms\Kit.Forms.csproj" />
     <ProjectReference Include="..\..\..\..\Kit\Kit\Kit.csproj" />
-    <ProjectReference Include="..\..\RSALibrary\RSALibrary.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,6 +34,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
+    <Compile Update="Views\KeyChainPage.xaml.cs">
+      <DependentUpon>KeyChainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\KeyPage.xaml.cs">
+      <DependentUpon>KeyPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -41,10 +47,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\CertificatePage.xaml">
+    <EmbeddedResource Update="Views\KeyPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\CertificatesPage.xaml">
+    <EmbeddedResource Update="Views\KeyChainPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\FromPicturePage.xaml">
@@ -63,6 +69,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\RequestCameraPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\SplashScreen.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>

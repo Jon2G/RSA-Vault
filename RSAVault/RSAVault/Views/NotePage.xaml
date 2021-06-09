@@ -2,15 +2,43 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:RSAVault.Models;assembly=RSAVault"
-             xmlns:resource="clr-namespace:RSAVault.Resources;assembly=RSAVault"
-             x:Class="RSAVault.Views.NotePage" x:DataType="models:Note"
-             Title="{Binding Title}" >
+             xmlns:resource="clr-namespace:RSAVault.Resources;assembly=RSAVault" 
+             xmlns:fonts="clr-namespace:RSAVault.Fonts;assembly=RSAVault"
+             xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:viewmodels="clr-namespace:RSAVault.ViewModels"
+             x:DataType="viewmodels:NotePageViewModel"
+             x:Class="RSAVault.Views.NotePage" x:Name="Me"
+             Title="{Binding Note.Title}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Lock" Command="{Binding LockCommand,Source={x:Reference Me}}"/>
+    </ContentPage.ToolbarItems>
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior
+        Command="{Binding LockCommand,Source={x:Reference Me}}"
+        IsEnabled="True"/>
+    </Shell.BackButtonBehavior>
     <ContentPage.Content>
-        <StackLayout Padding="10">
-            <Entry HorizontalOptions="FillAndExpand" MaxLength="30" Placeholder="{x:Static resource:AppResources.Title}" Text="{Binding Title}" FontAttributes="Bold" FontSize="17"/>
-            <Editor Text="{Binding Text}"
+
+        <Grid VerticalOptions="FillAndExpand">
+            <StackLayout Padding="10">
+                <Entry  HorizontalOptions="FillAndExpand" MaxLength="30" Placeholder="{x:Static resource:AppResources.Title}" Text="{Binding Note.Title}" FontAttributes="Bold" FontSize="17"/>
+                <Editor Text="{Binding Note.Text}" x:Name="Editor"
                     VerticalOptions="FillAndExpand" FontSize="16" MaxLength="1000"
                     HorizontalOptions="FillAndExpand" />
-        </StackLayout>
+            </StackLayout>
+            <StackLayout VerticalOptions="FillAndExpand" InputTransparent="True"
+                         BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundLightColor},Dark={StaticResource DisabledDarkAccentColor}}"
+                         Opacity="0.1" x:Name="LockSeal"
+                         HorizontalOptions="FillAndExpand">
+                <pancakeview:PancakeView Padding="50" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                    <Image HeightRequest="70" WidthRequest="70" PropertyChanged="Image_PropertyChanged">
+                        <Image.Source>
+                            <FontImageSource Glyph="{Binding LockIcon}" 
+                                             FontFamily="{x:Static fonts:FontelloIcons.Font}" Color="{AppThemeBinding Light={StaticResource DarkTextColor},Dark={StaticResource LightTextColor}}"/>
+                        </Image.Source>
+                    </Image>
+                </pancakeview:PancakeView>
+            </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -6,27 +6,46 @@ using RSAVault.Resources;
 using RSAVault.Views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Settings = RSAVault.Models.Settings;
 
 namespace RSAVault.ViewModels
 {
     public class MainPageViewModel : ModelBase
     {
-        public ICommand CertificatesCommand { get; set; }
-        public ICommand NotesCommand { get; set; }
-        public ICommand FromTextCommand { get; set; }
-        public ICommand FromPictureCommand { get; set; }
-        public ICommand FingerPrintCommand { get; set; }
-        public ICommand AboutCommand { get; set; }
-        public ICommand ChangeLanguajeCommand { get; set; }
+        private ICommand _CertificatesCommand;
+        public ICommand CertificatesCommand => _CertificatesCommand ??= new Command(Certificates);
+        private ICommand _NotesCommand;
+        public ICommand NotesCommand => _NotesCommand ??= new Command(Notes);
+        private ICommand _FromTextCommand;
+        public ICommand FromTextCommand => _FromTextCommand ??= new Command(FromText);
+        private ICommand _FromPictureCommand;
+        public ICommand FromPictureCommand => _FromPictureCommand ??= new Command(FromPicture);
+        private ICommand _FingerPrintCommand;
+        public ICommand FingerPrintCommand => _FingerPrintCommand ??= new Command(FingerPrint);
+        private ICommand _AboutCommand;
+        public ICommand AboutCommand => _AboutCommand ??= new Command(About);
+        private ICommand _ChangeLanguajeCommand;
+        public ICommand ChangeLanguajeCommand => _ChangeLanguajeCommand ??= new Command(ChangeLanguaje);
+        private Settings _Settings;
+
+        public Settings Settings
+        {
+            get => _Settings;
+            set
+            {
+                _Settings = value;
+                Raise(() => Settings);
+            }
+        }
+
         public MainPageViewModel()
         {
-            this.CertificatesCommand = new Command(Certificates);
-            this.NotesCommand = new Command(Notes);
-            this.AboutCommand = new Command(About);
-            this.FromTextCommand = new Command(FromText);
-            this.FromPictureCommand = new Command(FromPicture);
-            this.FingerPrintCommand = new Command(FingerPrint);
-            this.ChangeLanguajeCommand = new Command(ChangeLanguaje);
+            GetSettings();
+        }
+
+        private void GetSettings()
+        {
+            Settings = Settings.Get();
         }
 
         private async void Certificates() => await Shell.Current.Navigation.PushAsync(new CertificatesPage(), true);
@@ -39,9 +58,11 @@ namespace RSAVault.ViewModels
 
         private async void About() => await Shell.Current.Navigation.PushAsync(new AboutPage(), true);
 
-        private async void FingerPrint()
+        private void FingerPrint()
         {
-            
+            Forms9Patch.Audio.PlaySoundEffect(SoundEffect.KeyClick, EffectMode.On);
+            HapticFeedback.Perform(HapticFeedbackType.Click);
+            this.Settings.IsFingerPrintActive = !this.Settings.IsFingerPrintActive;
         }
 
         private void ChangeLanguaje()

@@ -4,6 +4,8 @@ using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
+using Plugin.CurrentActivity;
+using Plugin.Fingerprint;
 
 namespace RSAVault.Droid
 {
@@ -14,6 +16,7 @@ namespace RSAVault.Droid
         {
             base.OnCreate(savedInstanceState);
             LoadApplication(new App());
+            CrossFingerprint.SetCurrentActivityResolver(()=>CrossCurrentActivity.Current.Activity);
         }
     }
 }

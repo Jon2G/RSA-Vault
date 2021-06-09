@@ -2,15 +2,41 @@
 using System.Globalization;
 using Kit.Model;
 using Kit.Sql.Attributes;
+using Kit.Sql.Interfaces;
 
 namespace RSAVault.Models
 {
-    public class Note : ModelBase
+    public class Note : ModelBase, IGuid
     {
-        [AutoIncrement, PrimaryKey]
-        public int Id { get; set; }
-        public string Text { get; set; }
-        public string Title { get; set; }
+        [PrimaryKey]
+        public Guid Guid { get; set; }
+
+        private string _Text;
+
+        public string Text
+        {
+            get => _Text;
+            set
+            {
+                _Text = value;
+                Raise(() => IsEmpty);
+                Raise(() => Text);
+            }
+        }
+
+        private string _Title;
+
+        public string Title
+        {
+            get => _Title;
+            set
+            {
+                _Title = value;
+                Raise(() => Title);
+                Raise(() => IsEmpty);
+            }
+        }
+
         public string DisplayLastModificationTime => LastModificationTime.ToString(CultureInfo.CurrentCulture);
         private DateTime _LastModificationTime;
 
@@ -25,10 +51,14 @@ namespace RSAVault.Models
             }
         }
 
+        public bool IsEmpty => string.IsNullOrEmpty(Title?.Trim()) && string.IsNullOrEmpty(Text?.Trim()) && Guid == Guid.Empty;
+
         public Note()
         {
-            LastModificationTime=DateTime.Now;
-            
+            LastModificationTime = DateTime.Now;
+
         }
+
+
     }
 }

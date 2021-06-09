@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31313.79
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RSALibrary", "RSALibrary\RSALibrary.csproj", "{18523D6E-95CA-464D-98E0-30B3EDC04011}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kit", "Kit", "{0438A013-8506-4503-B89D-8F002170E3C0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kit", "..\..\Kit\Kit\Kit.csproj", "{7515D68D-BDDC-49C6-8A3F-D3071D50FEE0}"
@@ -13,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSAVault.Android", "RSAVaul
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSAVault.iOS", "RSAVault\RSAVault.iOS\RSAVault.iOS.csproj", "{428F4BEC-A106-4E13-A7C0-FB51F51E2AEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSAVault", "RSAVault\RSAVault\RSAVault.csproj", "{D221E69E-4DB2-42E8-A2E0-D42AC77A0DE1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RSAVault", "RSAVault\RSAVault\RSAVault.csproj", "{D221E69E-4DB2-42E8-A2E0-D42AC77A0DE1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kit.Forms", "..\..\Kit\Kit.Forms\Kit.Forms.csproj", "{4A1A12C5-2DFE-4A6B-866E-81FF918AC796}"
 EndProject
@@ -34,24 +32,6 @@ Global
 		Release|iPhoneSimulator = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{18523D6E-95CA-464D-98E0-30B3EDC04011}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{18523D6E-95CA-464D-98E0-30B3EDC04011}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{18523D6E-95CA-464D-98E0-30B3EDC04011}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{18523D6E-95CA-464D-98E0-30B3EDC04011}.Debug|iPhone.Build.0 = Debug|Any CPU
-		{18523D6E-95CA-464D-98E0-30B3EDC04011}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{18523D6E-95CA-464D-98E0-30B3EDC04011}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{18523D6E-95CA-464D-98E0-30B3EDC04011}.Gorilla|Any CPU.ActiveCfg = Release|Any CPU
-		{18523D6E-95CA-464D-98E0-30B3EDC04011}.Gorilla|Any CPU.Build.0 = Release|Any CPU
-		{18523D6E-95CA-464D-98E0-30B3EDC04011}.Gorilla|iPhone.ActiveCfg = Release|Any CPU
-		{18523D6E-95CA-464D-98E0-30B3EDC04011}.Gorilla|iPhone.Build.0 = Release|Any CPU
-		{18523D6E-95CA-464D-98E0-30B3EDC04011}.Gorilla|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{18523D6E-95CA-464D-98E0-30B3EDC04011}.Gorilla|iPhoneSimulator.Build.0 = Release|Any CPU
-		{18523D6E-95CA-464D-98E0-30B3EDC04011}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{18523D6E-95CA-464D-98E0-30B3EDC04011}.Release|Any CPU.Build.0 = Release|Any CPU
-		{18523D6E-95CA-464D-98E0-30B3EDC04011}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{18523D6E-95CA-464D-98E0-30B3EDC04011}.Release|iPhone.Build.0 = Release|Any CPU
-		{18523D6E-95CA-464D-98E0-30B3EDC04011}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{18523D6E-95CA-464D-98E0-30B3EDC04011}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{7515D68D-BDDC-49C6-8A3F-D3071D50FEE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7515D68D-BDDC-49C6-8A3F-D3071D50FEE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7515D68D-BDDC-49C6-8A3F-D3071D50FEE0}.Debug|iPhone.ActiveCfg = Debug|Any CPU

@@ -123,23 +123,23 @@
   <data name="Alert" xml:space="preserve">
     <value>Alerta</value>
   </data>
+  <data name="Alias" xml:space="preserve">
+    <value>Alias:</value>
+  </data>
   <data name="AllowAccess" xml:space="preserve">
     <value>Por favor permita el acceso</value>
+  </data>
+  <data name="AlReadyExists" xml:space="preserve">
+    <value>Ya existe una llave con este nombre, proporcione un nombre diferente</value>
+  </data>
+  <data name="AuthFailed" xml:space="preserve">
+    <value>Autenticación fallida.</value>
   </data>
   <data name="BuyMeACoffe" xml:space="preserve">
     <value>Cómprame un café</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancelar</value>
-  </data>
-  <data name="Certificate" xml:space="preserve">
-    <value>Certificado</value>
-  </data>
-  <data name="Certificates" xml:space="preserve">
-    <value>Certificados</value>
-  </data>
-  <data name="CertificatesKeys" xml:space="preserve">
-    <value>Certificados &amp; llaves</value>
   </data>
   <data name="ChangeLanguage" xml:space="preserve">
     <value>Cambiar a ingles</value>
@@ -152,9 +152,6 @@
   </data>
   <data name="Continue" xml:space="preserve">
     <value>Continuar</value>
-  </data>
-  <data name="CreateCertificate" xml:space="preserve">
-    <value>Crear certificado</value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Eliminar</value>
@@ -179,6 +176,9 @@
   </data>
   <data name="FingerPrint" xml:space="preserve">
     <value>Habilitar bloqueo por huella</value>
+  </data>
+  <data name="FingerPrintNotAvaible" xml:space="preserve">
+    <value>El leector de huellas y/o bloque de pantalla no esta disponible</value>
   </data>
   <data name="FromText" xml:space="preserve">
     <value>Encriptar texto</value>
@@ -219,20 +219,49 @@
   <data name="ItsAFileNotAnImage" xml:space="preserve">
     <value>El archivo seleccionado no es una imagen</value>
   </data>
+  <data name="Key" xml:space="preserve">
+    <value>Llave</value>
+  </data>
+  <data name="Keychain" xml:space="preserve">
+    <value>Llavero</value>
+  </data>
+  <data name="Keys" xml:space="preserve">
+    <value>Llaves</value>
+  </data>
   <data name="Licenses" xml:space="preserve">
     <value>Licencias y créditos</value>
+  </data>
+  <data name="LockReason" xml:space="preserve">
+    <value>Accede con tu huella digital</value>
+  </data>
+  <data name="LockTitle" xml:space="preserve">
+    <value>Bloqueo de aplicación</value>
   </data>
   <data name="MainTitle" xml:space="preserve">
     <value>Bóveda - RSA</value>
   </data>
+  <data name="MakeKey" xml:space="preserve">
+    <value>Crear llave</value>
+  </data>
   <data name="Months" xml:space="preserve">
     <value>Meses</value>
   </data>
-  <data name="Name" xml:space="preserve">
-    <value>Nombre: </value>
+  <data name="MustProvideName" xml:space="preserve">
+    <value>Debe ingresar un nombre valido para esta llave</value>
   </data>
-  <data name="NewCertificate" xml:space="preserve">
-    <value>Nuevo certificado</value>
+  <data name="MustProvidePassword" xml:space="preserve">
+    <value>Debe ingresar una contraseña segura de al menos 8 caracteres para proteger esta llave</value>
+  </data>
+  <data name="NewKey" xml:space="preserve">
+    <value>Nueva llave</value>
+  </data>
+  <data name="NoKeys" xml:space="preserve">
+    <value>No cuenta con ningúna llave
+Puede una llave ahora.</value>
+  </data>
+  <data name="NoNotes" xml:space="preserve">
+    <value>No tiene ninguna nota por ahora.
+Puede comenzar creando una ahora</value>
   </data>
   <data name="Notes" xml:space="preserve">
     <value>Notas privadas</value>

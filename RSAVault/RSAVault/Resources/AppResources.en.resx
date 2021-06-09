@@ -123,23 +123,23 @@
   <data name="Alert" xml:space="preserve">
     <value>Alert</value>
   </data>
+  <data name="Alias" xml:space="preserve">
+    <value>Alias:</value>
+  </data>
   <data name="AllowAccess" xml:space="preserve">
     <value>Please grant access</value>
+  </data>
+  <data name="AlReadyExists" xml:space="preserve">
+    <value>A key with this name al ready exists,please provide a diferent name</value>
+  </data>
+  <data name="AuthFailed" xml:space="preserve">
+    <value>Authentication failed.</value>
   </data>
   <data name="BuyMeACoffe" xml:space="preserve">
     <value>Buy me a Coffe</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
-  </data>
-  <data name="Certificate" xml:space="preserve">
-    <value>Certificate</value>
-  </data>
-  <data name="Certificates" xml:space="preserve">
-    <value>Certificates</value>
-  </data>
-  <data name="CertificatesKeys" xml:space="preserve">
-    <value>Certificates &amp; keys</value>
   </data>
   <data name="ChangeLanguage" xml:space="preserve">
     <value>Change to Spanish</value>
@@ -152,9 +152,6 @@
   </data>
   <data name="Continue" xml:space="preserve">
     <value>Continue</value>
-  </data>
-  <data name="CreateCertificate" xml:space="preserve">
-    <value>Create certificate</value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
@@ -179,6 +176,9 @@
   </data>
   <data name="FingerPrint" xml:space="preserve">
     <value>Enable fingerprint lock</value>
+  </data>
+  <data name="FingerPrintNotAvaible" xml:space="preserve">
+    <value>The fingerprint reader and/or screen lock is not avaible</value>
   </data>
   <data name="FromText" xml:space="preserve">
     <value>Encrypt Text</value>
@@ -219,20 +219,49 @@
   <data name="ItsAFileNotAnImage" xml:space="preserve">
     <value>The selected file is not an image</value>
   </data>
+  <data name="Key" xml:space="preserve">
+    <value>Key</value>
+  </data>
+  <data name="Keychain" xml:space="preserve">
+    <value>Keychain</value>
+  </data>
+  <data name="Keys" xml:space="preserve">
+    <value>Keys</value>
+  </data>
   <data name="Licenses" xml:space="preserve">
     <value>Licenses and credits</value>
+  </data>
+  <data name="LockReason" xml:space="preserve">
+    <value>Authenticate with your fingerprint</value>
+  </data>
+  <data name="LockTitle" xml:space="preserve">
+    <value>App lock</value>
   </data>
   <data name="MainTitle" xml:space="preserve">
     <value>RSA Vault</value>
   </data>
+  <data name="MakeKey" xml:space="preserve">
+    <value>Make key</value>
+  </data>
   <data name="Months" xml:space="preserve">
     <value>Months</value>
   </data>
-  <data name="Name" xml:space="preserve">
-    <value>Name: </value>
+  <data name="MustProvideName" xml:space="preserve">
+    <value>Must provide a valid name for this key</value>
   </data>
-  <data name="NewCertificate" xml:space="preserve">
-    <value>New certificate</value>
+  <data name="MustProvidePassword" xml:space="preserve">
+    <value>You must enter a strong password of at least 8 characters to protect this key.</value>
+  </data>
+  <data name="NewKey" xml:space="preserve">
+    <value>New key</value>
+  </data>
+  <data name="NoKeys" xml:space="preserve">
+    <value>You don't have any key
+You can make a key now.</value>
+  </data>
+  <data name="NoNotes" xml:space="preserve">
+    <value>You don't have any note
+You can start by making a new note.</value>
   </data>
   <data name="Notes" xml:space="preserve">
     <value>Private notes</value>

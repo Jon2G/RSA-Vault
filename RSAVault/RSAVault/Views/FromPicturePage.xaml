@@ -18,34 +18,34 @@
         <viewModels:FromPicturePageViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout Padding="10">
-            <ScrollView VerticalOptions="FillAndExpand">
-                <StackLayout >
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="Start" Margin="10,0" Spacing="20">
-                        <ImageButton Command="{Binding PickFileCommand}" BackgroundColor="Transparent">
-                            <ImageButton.Source>
-                                <FontImageSource Color="{AppThemeBinding Dark={StaticResource LightTextColor},Light={StaticResource AccentColor}}"
+        <StackLayout Padding="10" VerticalOptions="FillAndExpand">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Start" Margin="10" Spacing="20">
+                <ImageButton Command="{Binding PickFileCommand}" BackgroundColor="Transparent">
+                    <ImageButton.Source>
+                        <FontImageSource Color="{AppThemeBinding Dark={StaticResource LightTextColor},Light={StaticResource AccentColor}}"
                                          FontFamily="{x:Static fonts:FontelloIcons.Font}" Glyph="{x:Static  fonts:FontelloIcons.Photo}"/>
-                            </ImageButton.Source>
-                        </ImageButton>
-                        <ImageButton Command="{Binding TakePhotoCommand}" BackgroundColor="Transparent">
-                            <ImageButton.Source>
-                                <FontImageSource Color="{AppThemeBinding Dark={StaticResource LightTextColor},Light={StaticResource AccentColor}}"
+                    </ImageButton.Source>
+                </ImageButton>
+                <ImageButton Command="{Binding TakePhotoCommand}" BackgroundColor="Transparent">
+                    <ImageButton.Source>
+                        <FontImageSource Color="{AppThemeBinding Dark={StaticResource LightTextColor},Light={StaticResource AccentColor}}"
                                          FontFamily="{x:Static fonts:FontelloIcons.Font}" Glyph="{x:Static  fonts:FontelloIcons.Camera}"/>
-                            </ImageButton.Source>
-                        </ImageButton>
-                        <ImageButton Command="{Binding CleanCommand}" BackgroundColor="Transparent">
-                            <ImageButton.Source>
-                                <FontImageSource 
+                    </ImageButton.Source>
+                </ImageButton>
+                <ImageButton Command="{Binding CleanCommand}" BackgroundColor="Transparent">
+                    <ImageButton.Source>
+                        <FontImageSource 
                             Color="{AppThemeBinding Dark={StaticResource LightTextColor},Light={StaticResource AccentColor}}"
                             FontFamily="{x:Static fonts:FontelloIcons.Font}" Glyph="{x:Static  fonts:FontelloIcons.TrashBin}"/>
-                            </ImageButton.Source>
-                        </ImageButton>
-                    </StackLayout>
+                    </ImageButton.Source>
+                </ImageButton>
+            </StackLayout>
+            <ScrollView VerticalOptions="FillAndExpand">
+                <StackLayout >
                     <Label  FontAttributes="Bold" FontSize="18">
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text="{x:Static resource:AppResources.Certificate}"/>
+                                <Span Text="{x:Static resource:AppResources.Key}"/>
                                 <Span Text=":"/>
                             </FormattedString>
                         </Label.FormattedText>
@@ -64,45 +64,28 @@
                                     <FontImageSource
                                     Color="{StaticResource AccentColor}"
                                     FontFamily="{x:Static fonts:FontelloIcons.Font}"
-                                    Glyph="{x:Static fonts:FontelloIcons.Certificate}"/>
+                                    Glyph="{x:Static fonts:FontelloIcons.Key}"/>
                                 </Image.Source>
                             </Image>
                             <StackLayout Padding="10" VerticalOptions="CenterAndExpand">
                                 <Label FontSize="14" FontAttributes="Bold">
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="{x:Static resource:AppResources.Name}"/>
+                                            <Span Text="{x:Static resource:AppResources.Alias}"/>
                                             <Span Text=" "/>
                                             <Span Text="{Binding Certificate.Name}"/>
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
-                                <Label FontSize="14" FontAttributes="Bold">
-                                    <Label.FormattedText>
-                                        <FormattedString>
-                                            <Span Text="{x:Static resource:AppResources.Expire}"/>
-                                            <Span Text=" "/>
-                                            <Span Text="{Binding Certificate.DisplayEndDate}"/>
-                                        </FormattedString>
-                                    </Label.FormattedText>
-                                </Label>
-
                             </StackLayout>
                         </StackLayout>
                     </pancakeView:PancakeView>
 
                     <Label Text="{x:Static resource:AppResources.Text}" FontAttributes="Bold" FontSize="18"/>
-                    <Editor Text="{Binding Text}" AutoSize="TextChanges" HeightRequest="80" VerticalOptions="FillAndExpand"/>
+                    <Editor Text="{Binding Text}" AutoSize="TextChanges"  VerticalOptions="FillAndExpand"/>
                     <Label Text="{x:Static resource:AppResources.Image}" FontAttributes="Bold" FontSize="18"/>
 
-                    <pancakeView:PancakeView VerticalOptions="FillAndExpand"
-                                     xct:TouchEffect.NormalBackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundSecondaryDarkColor},Light={StaticResource BackgroundSecondaryLightColor}}"
-                                     xct:TouchEffect.PressedBackgroundColor="LightGray"
-                                     xct:TouchEffect.NativeAnimationColor="LightGray"
-                                     xct:TouchEffect.PressedScale="0.99" 
-                                     xct:TouchEffect.CommandParameter="{Binding .}"
-                                     xct:TouchEffect.NativeAnimation="True"
-                                     xct:TouchEffect.Command="{Binding PickFileCommand}">
+                    <pancakeView:PancakeView VerticalOptions="FillAndExpand">
 
                         <forms:CachedImage DownsampleToViewSize="True"  x:Name="Image"
                                    VerticalOptions="FillAndExpand" 
@@ -114,21 +97,24 @@
 
                 </StackLayout>
             </ScrollView>
-            <controls:ArrowButton Title="{x:Static resource:AppResources.Share}" VerticalOptions="End"
-                                  Command="{Binding ShareCommand}"
-                                  IconHeightRequest="30">
-                <controls:ArrowButton.Icon>
-                    <FontImageSource FontFamily="{x:Static fonts:FontelloIcons.Font}"
+            <StackLayout Padding="10" Orientation="Horizontal">
+                <controls:ArrowButton Title="{x:Static resource:AppResources.Share}" VerticalOptions="End"
+                                      Command="{Binding ShareCommand}"
+                                      IconHeightRequest="30">
+                    <controls:ArrowButton.Icon>
+                        <FontImageSource FontFamily="{x:Static fonts:FontelloIcons.Font}"
                                      Glyph="{x:Static fonts:FontelloIcons.Share}" 
                                      Color="{AppThemeBinding Dark={StaticResource PrimaryDarkColor},Light={StaticResource PrimaryLightColor}}" Size="30"/>
-                </controls:ArrowButton.Icon>
-            </controls:ArrowButton>
+                    </controls:ArrowButton.Icon>
+                </controls:ArrowButton>
 
-            <Button Text="{x:Static resource:AppResources.Hide}"
+                <Button Text="{x:Static resource:AppResources.Hide}"
                     IsEnabled="{Binding IsLoading,Converter={StaticResource NegateConverter},Source={x:Reference Image}}"
                     Command="{Binding CalculateCommand}"
                     CommandParameter="{Binding Source={x:Reference Image}}"/>
+            </StackLayout>
         </StackLayout>
+       
 
     </ContentPage.Content>
 </ContentPage>
