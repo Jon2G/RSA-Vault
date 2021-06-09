@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Text;
 using Kit;
 using Kit.Daemon.Devices;
-using Kit.Forms.Security.RSA;
 using Kit.Forms.Services.Interfaces;
 using RSAVault.Data;
 using Xamarin.Forms;
@@ -13,56 +13,38 @@ namespace RSAVault.Models
 {
     internal static class KeyChain
     {
-        public static Key PersonalKey
+        public static KeyContainer PersonalKey
         {
             get
             {
-                var key =GetKey(Device.Current.DeviceId);
-                if (key is null)
-                {
-                    key = MakeKey(Device.Current.DeviceId);
-                    KeyChain.Save(key);
-                }
-                return key;
+                KeyContainer container = GetKey(Device.Current.DeviceId);
+                if (container is not null) return container;
+                container = MakeKey(Device.Current.DeviceId, RSAEncryptionPadding.Pkcs1);
+                KeyChain.Save(container);
+                return container;
             }
 
         }
-        internal static Key MakeKey(string name)
+        internal static KeyContainer MakeKey(string name, RSAEncryptionPadding encryptionPadding)
         {
             if (string.IsNullOrEmpty(name))
             {
                 name = $"Key #{AppData.Instance.LiteConnection.Single<int>("select seq from sqlite_sequence WHERE name = 'Key'") + 1}";
             }
-
-            IRSA rsa = DependencyService.Get<IRSA>(DependencyFetchTarget.GlobalInstance);
-            Key rsa_key = rsa.MakeKey(name);
-
-            //try
-            //{
-
-            //    var keypair = Vault.AsymmetricKey.CreateKeyPair(512);
-
-            //    var keyString = Convert.ToBase64String(keypair.Export());
-            //    rsa_key = new Key(name, keyString);
-            //}
-            //catch (Exception e)
-            //{
-            //    Log.Logger.Error(e, "While creating a new key");
-            //}
-            return rsa_key;
+            return new KeyContainer(name, Key.Create(4096));
         }
-        internal static Key GetKey(string Name)
+        internal static KeyContainer GetKey(string Name)
         {
-            return AppData.Instance.LiteConnection.Table<Key>().FirstOrDefault(x => x.Name == Name);
+            return AppData.Instance.LiteConnection.Table<KeyContainer>().FirstOrDefault(x => x.Name == Name);
         }
-        internal static void Save(Key key)
+        internal static void Save(KeyContainer key)
         {
             AppData.Instance.LiteConnection.InsertOrReplace(key);
         }
 
-        public static IEnumerable<Key> GetKeys()
+        public static IEnumerable<KeyContainer> GetKeys()
         {
-            return AppData.Instance.LiteConnection.Table<Key>();
+            return AppData.Instance.LiteConnection.Table<KeyContainer>();
         }
     }
 }

@@ -3,20 +3,21 @@ using System.Collections.Generic;
 using System.Text;
 using Kit.Model;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Forms9Patch;
+
 using RSAVault.Models;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using Kit.Forms.Security.RSA;
 
 namespace RSAVault.ViewModels
 {
     public class KeyPageViewModel : ModelBase
     {
-        private Key _Key;
-        public Key Key
+        private KeyContainer _Key;
+        public KeyContainer Key
         {
             get => _Key;
             set
@@ -28,7 +29,7 @@ namespace RSAVault.ViewModels
 
         public KeyPageViewModel()
         {
-            this.Key = KeyChain.MakeKey(string.Empty);
+            this.Key = KeyChain.MakeKey(string.Empty,RSAEncryptionPadding.Pkcs1);
         }
     }
 }

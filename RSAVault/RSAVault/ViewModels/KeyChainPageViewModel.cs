@@ -6,20 +6,20 @@ using System.Threading.Tasks;
 using Kit.Model;
 using System.Windows.Input;
 using Forms9Patch;
+
 using RSAVault.Data;
 using RSAVault.Models;
 using RSAVault.Views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using Kit.Forms.Security.RSA;
 
 namespace RSAVault.ViewModels
 {
     public class KeyChainPageViewModel : ModelBase
     {
-        private Command<Key> _KeyClickedCommand;
+        private Command<KeyContainer> _KeyClickedCommand;
 
-        public Command<Key> KeyClickedCommand
+        public Command<KeyContainer> KeyClickedCommand
         {
             get => _KeyClickedCommand;
             set
@@ -30,8 +30,8 @@ namespace RSAVault.ViewModels
         }
         private ICommand _NewKeyCommand;
         public ICommand NewKeyCommand => _NewKeyCommand ??= new Command(NewKey);
-        private List<Key> _Keys;
-        public List<Key> Keys
+        private List<KeyContainer> _Keys;
+        public List<KeyContainer> Keys
         {
             get => _Keys;
             set
@@ -73,7 +73,7 @@ namespace RSAVault.ViewModels
             IsEmpty = false;
             try
             {
-                this.Keys = new List<Key>(KeyChain.GetKeys());
+                this.Keys = new List<KeyContainer>(KeyChain.GetKeys());
             }
             finally
             {

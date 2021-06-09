@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
-using Kit.Forms.Security.RSA;
 using Kit.Model;
+
 using Kit.Sql.Sqlite;
 using RSAVault.Models;
 
@@ -25,7 +25,7 @@ namespace RSAVault.Data
             {
                 LiteConnection = new SQLiteConnection(LiteDbPath, 107)
             };
-            AppData.Instance.LiteConnection.CheckTables(typeof(Settings),typeof(Key), typeof(Note));
+            AppData.Instance.LiteConnection.CheckTables(typeof(Settings),typeof(KeyContainer), typeof(Note));
         }
     }
 }

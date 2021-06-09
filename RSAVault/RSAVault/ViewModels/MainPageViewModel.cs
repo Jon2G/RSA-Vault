@@ -48,7 +48,7 @@ namespace RSAVault.ViewModels
             Settings = Settings.Get();
         }
 
-        private async void Certificates() => await Shell.Current.Navigation.PushAsync(new CertificatesPage(), true);
+        private async void Certificates() => await Shell.Current.Navigation.PushAsync(new KeysPage(), true);
 
         private async void Notes() => await Shell.Current.Navigation.PushAsync(new NotesPage(), true);
 

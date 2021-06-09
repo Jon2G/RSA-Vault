@@ -44,7 +44,11 @@ namespace RSAVault.Views
                 //await Task.Delay(100);
                 this.Editor.Text = previoustext;
             }
-            else { await this.LockSeal.FadeTo(0, 1000); this.Editor.Focus(); }
+            else {
+                this.Model.IsLocked = false;
+                await this.LockSeal.FadeTo(0, 1000); 
+                this.Editor.Focus();
+            }
         }
         private async void Lock()
         {

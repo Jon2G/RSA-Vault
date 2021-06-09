@@ -56,8 +56,7 @@ namespace RSAVault.Views
 
         private void GotoApp(AppShell shell)
         {
-            DependencyService.Get<IRSA>().TestKey(KeyChain.PersonalKey);
-
+            KeyChain.PersonalKey.TestKey();
             App.Current.MainPage = shell;
         }
     }

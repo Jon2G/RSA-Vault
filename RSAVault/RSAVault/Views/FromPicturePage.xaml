@@ -73,7 +73,7 @@
                                         <FormattedString>
                                             <Span Text="{x:Static resource:AppResources.Alias}"/>
                                             <Span Text=" "/>
-                                            <Span Text="{Binding Certificate.Name}"/>
+                                            <Span Text="{Binding Key.Name}"/>
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>

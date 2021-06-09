@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
 using Forms9Patch;
-using Kit.Forms.Security.RSA;
 using Kit.Model;
+
 using RSAVault.Models;
 using RSAVault.Views;
 using Xamarin.Essentials;
@@ -48,9 +48,9 @@ namespace RSAVault.ViewModels
             }
         }
         
-        private Key _Key;
+        private KeyContainer _Key;
 
-        public Key Key
+        public KeyContainer Key
         {
             get => _Key;
             set
@@ -76,22 +76,24 @@ namespace RSAVault.ViewModels
         }
         private void Update()
         {
-            this.Encrypted = Key.EncryptToString(Text);
+            this.Encrypted = Key.Encrypt(Text);
         }
         public async void ChangeKey()
         {
             Forms9Patch.Audio.PlaySoundEffect(SoundEffect.KeyClick, EffectMode.On);
             HapticFeedback.Perform(HapticFeedbackType.Click);
-            var certificates = new CertificatesPage();
-            certificates.Model.KeyClickedCommand = new Command<Key>(ChangeKey);
+            var certificates = new KeysPage
+            {
+                Model = {KeyClickedCommand = new Command<KeyContainer>(ChangeKey)}
+            };
             await Shell.Current.Navigation.PushAsync(certificates, true);
         }
-        private async void ChangeKey(Key Certificate)
+        private async void ChangeKey(KeyContainer key)
         {
             Forms9Patch.Audio.PlaySoundEffect(SoundEffect.KeyClick, EffectMode.On);
             HapticFeedback.Perform(HapticFeedbackType.Click);
             await Shell.Current.Navigation.PopAsync( true);
-            this.Key = Certificate;
+            this.Key = key;
         }
     }
 }

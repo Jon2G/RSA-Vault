@@ -9,9 +9,9 @@ using Forms9Patch;
 using Kit;
 using Kit.Extensions;
 using Kit.Forms.Extensions;
-using Kit.Forms.Security.RSA;
 using Kit.Forms.Services;
 using Kit.Model;
+using RSAVault.Models;
 using RSAVault.Resources;
 using RSAVault.Views;
 using Xamarin.Essentials;
@@ -54,15 +54,15 @@ namespace RSAVault.ViewModels
             }
         }
 
-        private Key _Certificate;
+        private KeyContainer _Key;
 
-        public Key Certificate
+        public KeyContainer Key
         {
-            get => _Certificate;
+            get => _Key;
             set
             {
-                _Certificate = value;
-                Raise(() => Certificate);
+                _Key = value;
+                Raise(() => Key);
             }
         }
 
@@ -172,16 +172,16 @@ namespace RSAVault.ViewModels
         {
             Forms9Patch.Audio.PlaySoundEffect(SoundEffect.KeyClick, EffectMode.On);
             HapticFeedback.Perform(HapticFeedbackType.Click);
-            var certificates = new CertificatesPage();
-            certificates.Model.KeyClickedCommand = new Xamarin.Forms.Command<Key>(ChangeCertificate);
-            await Shell.Current.Navigation.PushAsync(certificates, true);
+            var keys = new KeysPage();
+            keys.Model.KeyClickedCommand = new Xamarin.Forms.Command<KeyContainer>(ChangeCertificate);
+            await Shell.Current.Navigation.PushAsync(keys, true);
         }
-        private async void ChangeCertificate(Key Certificate)
+        private async void ChangeCertificate(KeyContainer Key)
         {
             Forms9Patch.Audio.PlaySoundEffect(SoundEffect.KeyClick, EffectMode.On);
             HapticFeedback.Perform(HapticFeedbackType.Click);
             await Shell.Current.Navigation.PopAsync(true);
-            this.Certificate = Certificate;
+            this.Key = Key;
         }
     }
 }

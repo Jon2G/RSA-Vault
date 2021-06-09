@@ -10,11 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace RSAVault.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CertificatesPage : ContentPage
+    public partial class KeysPage : ContentPage
     {
 
 
-        public CertificatesPage()
+        public KeysPage()
         {
             InitializeComponent();
         }

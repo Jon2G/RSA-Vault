@@ -4,7 +4,7 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using Kit;
-using Kit.Forms.Security.RSA;
+
 using Plugin.Fingerprint;
 using Plugin.Fingerprint.Abstractions;
 using RSAVault.Data;
@@ -43,15 +43,15 @@ namespace RSAVault.Models
         internal static void SaveNote(Note note)
         {
             note.LastModificationTime = DateTime.Now;
-            Key key = KeyChain.PersonalKey;
-            note.Text = key.EncryptToString(note.Text);
+            KeyContainer key = KeyChain.PersonalKey;
+            note.Text = key.Encrypt(note.Text);
             AppData.Instance.LiteConnection.InsertOrReplace(note);
         }
 
         public static void Decrypt(Note note)
         {
-            Key key = KeyChain.PersonalKey;
-            note.Text = key.DecryptToString(note.Text);
+            KeyContainer key = KeyChain.PersonalKey;
+            note.Text = key.Decrypt(note.Text);
         }
     }
 }

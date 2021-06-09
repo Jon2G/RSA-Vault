@@ -7,10 +7,9 @@
              xmlns:resource="clr-namespace:RSAVault.Resources;assembly=RSAVault"
              xmlns:viewModels="clr-namespace:RSAVault.ViewModels;assembly=RSAVault"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             xmlns:models="clr-namespace:RSAVault.Models;assembly=RSAVault" 
-             xmlns:rsa="clr-namespace:Kit.Forms.Security.RSA;assembly=Kit.Forms"
+             xmlns:models="clr-namespace:RSAVault.Models;assembly=RSAVault"
              x:Name="Me"
-             x:Class="RSAVault.Views.CertificatesPage" x:DataType="viewModels:KeyChainPageViewModel"
+             x:Class="RSAVault.Views.KeysPage" x:DataType="viewModels:KeyChainPageViewModel"
              Title="{x:Static resource:AppResources.Keychain}">
     <ContentPage.BindingContext>
         <viewModels:KeyChainPageViewModel x:Name="Model" x:FieldModifier="public" />
@@ -22,7 +21,7 @@
                       IsRefreshing="{Binding Loading}"
                       VerticalOptions="FillAndExpand"  SelectionMode="None">
                     <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="rsa:Key">
+                        <DataTemplate x:DataType="models:KeyContainer">
                             <ViewCell>
                                 <ContentView Margin="0,5" VerticalOptions="FillAndExpand">
                                     <SwipeView >
