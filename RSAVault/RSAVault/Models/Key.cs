@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Text;
 using Kit.Sql.Attributes;
 using Kit.Sql.Interfaces;
@@ -21,9 +22,6 @@ namespace RSAVault.Models
         public string PublicKeyExponent { private set; get; }
         public string XML => Algorithm.ToXmlString(true);
 
-        private Key()
-        {
-        }
 
         private void ReadKey()
         {
@@ -32,37 +30,50 @@ namespace RSAVault.Models
             PrivateKeyExponent = Convert.ToBase64String(key_parameters.D);
             PublicKeyExponent = Convert.ToBase64String(key_parameters.Exponent);
         }
-        private Key(string xml, int KeySizeInBits = 4096) : this()
+        private Key(string xml) 
         {
-            Algorithm = RSA.Create(4096);
+            Algorithm = RSA.Create();
+            int size = Algorithm.LegalKeySizes.Max(x => x.MaxSize);
+            KeySize = size;
+            Algorithm = RSA.Create(KeySize);
             Algorithm.FromXmlString(xml);
             ReadKey();
         }
-        private Key(int KeySizeInBits = 4096) : this()
+        private Key() 
         {
-            KeySize = KeySizeInBits;
-            Algorithm = RSA.Create(KeySizeInBits);
+            Algorithm = RSA.Create();
+            int size = Algorithm.LegalKeySizes.Max(x => x.MaxSize);
+            KeySize = size;
+            Algorithm = RSA.Create(size);
             ReadKey();
         }
 
         public string Encrypt(string Value)
         {
-            byte[] encrypted = Encoding.UTF8.GetBytes(Value);
-            encrypted = Algorithm.Encrypt(encrypted, RSAEncryptionPadding.Pkcs1);
-            return Convert.ToBase64String(encrypted);
+            try
+            {
+                byte[] encrypted = Encoding.UTF8.GetBytes(Value);
+                encrypted = Algorithm.Encrypt(encrypted, RSAEncryptionPadding.Pkcs1);
+                return Convert.ToBase64String(encrypted);
+            }
+            catch (Exception e)
+            {
+                Log.Logger.Error(e,"At Encrypt");
+            }
+            return  string.Empty;
         }
         public string Decrypt(string Value)
         {
-            byte[] encrypted =Convert.FromBase64String(Value);
+            byte[] encrypted = Convert.FromBase64String(Value);
             if (encrypted.Length < 128)
             {
                 return string.Empty;
             }
             encrypted = Algorithm.Decrypt(encrypted, RSAEncryptionPadding.Pkcs1);
-           string base_64 = Encoding.UTF8.GetString(encrypted);
+            string base_64 = Encoding.UTF8.GetString(encrypted);
             return base_64;
         }
-        public static Key Create(int keySizeInBits = 4096) => new Key(keySizeInBits);
-        public static Key Create(string xml, int keySizeInBits = 4096) => new Key(xml, keySizeInBits);
+        public static Key Create() => new Key();
+        public static Key Create(string xml) => new Key(xml);
     }
 }

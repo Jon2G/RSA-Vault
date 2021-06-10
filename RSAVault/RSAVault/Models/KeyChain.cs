@@ -36,7 +36,7 @@ namespace RSAVault.Models
             {
                 name = $"Key #{AppData.Instance.LiteConnection.Single<int>($"select seq from sqlite_sequence WHERE name = '{nameof(KeyContainer)}'") + 1}";
             }
-            return new KeyContainer(name, Key.Create(4096));
+            return new KeyContainer(name, Key.Create());
         }
         internal static KeyContainer GetKey(string Name)
         {

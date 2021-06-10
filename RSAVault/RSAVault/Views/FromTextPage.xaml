@@ -50,7 +50,7 @@
                 <StackLayout VerticalOptions="FillAndExpand">
 
                 <Label Text="{x:Static resource:AppResources.Text}" FontAttributes="Bold" FontSize="18"/>
-                <Editor MaxLength="128" Text="{Binding Text}" AutoSize="TextChanges"  VerticalOptions="FillAndExpand">
+                <Editor MaxLength="117" Text="{Binding Text}" AutoSize="TextChanges"  VerticalOptions="FillAndExpand">
                     <Editor.Behaviors>
                         <xct:EventToCommandBehavior EventName="Unfocused" Command="{Binding UpdateCommand}"/>
                     </Editor.Behaviors>

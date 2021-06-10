@@ -24,7 +24,7 @@
             <StackLayout Padding="10">
                 <Entry  HorizontalOptions="FillAndExpand" MaxLength="30" Placeholder="{x:Static resource:AppResources.Title}" Text="{Binding Note.Title}" FontAttributes="Bold" FontSize="17"/>
                 <Editor Text="{Binding Note.Text}" x:Name="Editor"
-                    VerticalOptions="FillAndExpand" FontSize="16" MaxLength="128"
+                    VerticalOptions="FillAndExpand" FontSize="16" MaxLength="117"
                     HorizontalOptions="FillAndExpand" />
             </StackLayout>
             <StackLayout VerticalOptions="FillAndExpand" InputTransparent="True"

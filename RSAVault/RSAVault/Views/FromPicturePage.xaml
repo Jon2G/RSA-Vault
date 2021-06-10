@@ -83,7 +83,7 @@
                     </pancakeView:PancakeView>
 
                     <Label Text="{x:Static resource:AppResources.Text}" FontAttributes="Bold" FontSize="18"/>
-                    <Editor Text="{Binding Text}" AutoSize="TextChanges"  VerticalOptions="FillAndExpand"/>
+                    <Editor MaxLength="117" Text="{Binding Text}" AutoSize="TextChanges"  VerticalOptions="FillAndExpand"/>
                     <Label Text="{x:Static resource:AppResources.Image}" FontAttributes="Bold" FontSize="18"/>
 
                     <pancakeView:PancakeView VerticalOptions="FillAndExpand">

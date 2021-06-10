@@ -43,7 +43,7 @@ namespace RSAVault.Views
                 this.Editor.Text += "@";
                 //await Task.Delay(100);
                 this.Editor.Text = previoustext;
-                this.Editor.MaxLength = 128;
+                this.Editor.MaxLength = 117;
             }
             else
             {
