@@ -75,6 +75,7 @@ namespace RSAVault.ViewModels
             {
                 this.Settings.IsFingerPrintAvaible();
             }
+            this.Settings.Save();
         }
 
         private void ChangeLanguaje()

@@ -39,7 +39,6 @@ namespace RSAVault.Models
                 this.IsFingerPrintActive = false;
                 Acr.UserDialogs.UserDialogs.Instance.Alert(AppResources.AuthFailed, AppResources.Alert);
             }
-            Save();
         }
 
         public Settings()
