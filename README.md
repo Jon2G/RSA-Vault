@@ -3,6 +3,6 @@
 
 <img src="https://github.com/Jon2G/RSA-Vault/blob/main/RSAVault/Screenshot.png" data-canonical-src="https://github.com/Jon2G/RSA-Vault/blob/main/RSAVault/Screenshot.png" width="270" />
 
-<img src="https://github.com/Jon2G/RSA-Vault/blob/main/RSAVault/android.jpg" data-canonical-src="https://github.com/Jon2G/RSA-Vault/blob/main/RSAVault/android.jpg" 
-     href="https://github.com/Jon2G/RSA-Vault/releases/download/100/com.companyname.rsavault.apk" height="70" />
-
+<a href="https://github.com/Jon2G/RSA-Vault/releases/download/100/com.companyname.rsavault.apk">
+<img src="https://github.com/Jon2G/RSA-Vault/blob/main/RSAVault/android.jpg" height="70" />
+</a>
