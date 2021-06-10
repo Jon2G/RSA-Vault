@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Kit.Model;
 using System.Windows.Input;
 using Forms9Patch;
+using RSAVault.Data;
 using RSAVault.Models;
 using RSAVault.Views;
 using Xamarin.Essentials;
@@ -29,6 +30,12 @@ namespace RSAVault.ViewModels
 
         private ICommand viewNoteCommand;
         public ICommand ViewNoteCommand => viewNoteCommand ??= new Command<Note>(ViewNote);
+        private ICommand _DeleteCommand;
+        public ICommand DeleteCommand => _DeleteCommand ??= new Command<Note>(Delete);
+        private ICommand _ShareCommand;
+        public ICommand ShareCommand => _ShareCommand ??= new Command<Note>(Share);
+        private ICommand addCommand;
+        public ICommand AddCommand => addCommand ??= new Command(Add);
         private List<Note> _Notes;
         public List<Note> Notes
         {
@@ -66,9 +73,14 @@ namespace RSAVault.ViewModels
             Shell.Current.Navigation.PushAsync(new NotePage(note));
         }
 
-        private ICommand addCommand;
-        public ICommand AddCommand => addCommand ??= new Command(Add);
 
+        private void Delete(Note note)
+        {
+            AppData.Instance.LiteConnection.Delete(note);
+            Task.Run(Refresh);
+        }
+
+        private void Share(Note note) => note.Share();
         private void Add()
         {
             Forms9Patch.Audio.PlaySoundEffect(SoundEffect.KeyClick, EffectMode.On);

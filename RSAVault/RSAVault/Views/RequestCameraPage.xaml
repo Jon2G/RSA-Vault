@@ -11,12 +11,12 @@
         <viewModels:RequestCameraPageViewModel/>
     </pages:BasePopUp.BindingContext>
     <ContentPage.Content>
-        <pancakeView:PancakeView  HorizontalOptions="Center"  VerticalOptions="Center" Margin="5">
+        <pancakeView:PancakeView  HorizontalOptions="Center"  VerticalOptions="Center" Margin="5"
+                                  BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundDarkColor},Light={StaticResource BackgroundLightColor}}">
             <StackLayout>
                 <Label Text="{x:Static resources:AppResources.WaitASecond}"
                        VerticalOptions="Start"  Padding="10" FontSize="20"
-                       HorizontalOptions="FillAndExpand"
- />
+                       HorizontalOptions="FillAndExpand"/>
                 <StackLayout Margin="5" Padding="5">
 
                     <StackLayout Orientation="Horizontal" Margin="3" Padding="10">
@@ -24,11 +24,11 @@
                             <Image.Source>
                                 <FontImageSource FontFamily="{x:Static fonts:FontelloIcons.Font}" 
                                                  Glyph="{x:Static fonts:FontelloIcons.Camera}" 
-                                                 Color="Black"/>
+                                                 Color="{AppThemeBinding Dark={StaticResource LightTextColor},Light={StaticResource DarkTextColor}}"/>
                             </Image.Source>
                         </Image>
 
-                        <Label TextColor="Black" Text="{x:Static resources:AppResources.GrantCamera}"/>
+                        <Label  Text="{x:Static resources:AppResources.GrantCamera}"/>
                     </StackLayout>
 
                     <StackLayout Orientation="Horizontal" Margin="3" Padding="10">
@@ -36,16 +36,16 @@
                             <Image.Source>
                                 <FontImageSource FontFamily="{x:Static fonts:FontelloIcons.Font}" 
                                                  Glyph="{x:Static fonts:FontelloIcons.Photo}" 
-                                                 Color="Black"/>
+                                                 Color="{AppThemeBinding Dark={StaticResource LightTextColor},Light={StaticResource DarkTextColor}}"/>
                             </Image.Source>
                         </Image>
 
-                        <Label TextColor="Black" Text="{x:Static resources:AppResources.GrantPhotos}"/>
+                        <Label  Text="{x:Static resources:AppResources.GrantPhotos}"/>
                     </StackLayout>
-                    <Label TextColor="Black" Text="{x:Static resources:AppResources.Privacy}"/>
+                    <Label  Text="{x:Static resources:AppResources.Privacy}"/>
                     <Button 
                         Text="{x:Static resources:AppResources.Continue}" Command="{Binding ContinueCommand}"/>
-                    <Label TextColor="Black" VerticalOptions="End" Text="{x:Static resources:AppResources.YouCanDisableThis}"/>
+                    <Label VerticalOptions="End" Text="{x:Static resources:AppResources.YouCanDisableThis}"/>
                 </StackLayout>
             </StackLayout>
         </pancakeView:PancakeView>

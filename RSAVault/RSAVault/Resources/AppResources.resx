@@ -160,7 +160,7 @@
     <value>Desarrollada por: Jonathan Eduardo G.G</value>
   </data>
   <data name="DevelopedFor" xml:space="preserve">
-    <value>Esta App fue desarrollada con la fines didacticos al ilustrar de forma sencilla la entropía de Shannon.</value>
+    <value>Esta App fue desarrollada con fines didacticos para profundizar en los temas de RSA y esteganográfia</value>
   </data>
   <data name="Encrypted" xml:space="preserve">
     <value>Encriptado: </value>
@@ -173,6 +173,12 @@
   </data>
   <data name="Expire" xml:space="preserve">
     <value>Vencimiento</value>
+  </data>
+  <data name="FindInPicture" xml:space="preserve">
+    <value>Leer texto oculto en una imagen</value>
+  </data>
+  <data name="FindInPictureSubtitle" xml:space="preserve">
+    <value>*Apartir de imagenes generadas por esta aplicación</value>
   </data>
   <data name="FingerPrint" xml:space="preserve">
     <value>Habilitar bloqueo por huella</value>
@@ -203,6 +209,9 @@
   </data>
   <data name="HasDeniedStorage" xml:space="preserve">
     <value>Ha denegado el acceso a su almacenamiento por favor permita el acceso desde ajustes de su dispositivo</value>
+  </data>
+  <data name="HiddingPicture" xml:space="preserve">
+    <value>Ocultando y encriptando texto...</value>
   </data>
   <data name="Hide" xml:space="preserve">
     <value>Ocultar</value>
@@ -243,6 +252,9 @@
   <data name="MakeKey" xml:space="preserve">
     <value>Crear llave</value>
   </data>
+  <data name="Modulus" xml:space="preserve">
+    <value>Módulo:</value>
+  </data>
   <data name="Months" xml:space="preserve">
     <value>Meses</value>
   </data>
@@ -273,6 +285,9 @@ Puede comenzar creando una ahora</value>
     <value>El archivo seleccionado no es un archivo de texto plano, si continua la lectura puede resultar en resultados inesperados.
 ¿Continuar?</value>
   </data>
+  <data name="OtherOptions" xml:space="preserve">
+    <value>Otros ajustes</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>Contraseña: </value>
   </data>
@@ -281,6 +296,12 @@ Puede comenzar creando una ahora</value>
   </data>
   <data name="Privacy" xml:space="preserve">
     <value>Nunca veremos ni compartiremos tus fotos por ningun medio.</value>
+  </data>
+  <data name="PrivateKeyExponent" xml:space="preserve">
+    <value>Exponente privado:</value>
+  </data>
+  <data name="PublicKeyExponent" xml:space="preserve">
+    <value>Exponente público:</value>
   </data>
   <data name="ReportBug" xml:space="preserve">
     <value>Reportar un bug</value>
@@ -297,6 +318,9 @@ Puede comenzar creando una ahora</value>
   <data name="SpecialThanks" xml:space="preserve">
     <value>Agradecimiento especial a "Tapia Sanchez Daniel" por su excelente labor docente.</value>
   </data>
+  <data name="Steganography" xml:space="preserve">
+    <value>Esteganografía</value>
+  </data>
   <data name="TakePhoto" xml:space="preserve">
     <value>Tomar fotografía</value>
   </data>
@@ -305,6 +329,9 @@ Puede comenzar creando una ahora</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>Título</value>
+  </data>
+  <data name="UnHide" xml:space="preserve">
+    <value>Desocultar</value>
   </data>
   <data name="WaitASecond" xml:space="preserve">
     <value>Un momento...</value>

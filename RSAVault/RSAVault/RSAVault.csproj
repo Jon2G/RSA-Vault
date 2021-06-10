@@ -7,13 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Fonts\Fontello\font\fontello_1.ttf" />
-    <None Remove="Fonts\Fontello\font\fontello_2.ttf" />
-    <None Remove="Fonts\Fontello\font\fontello_3.ttf" />
+    <None Remove="Fonts\Fontello\font\fontello_4.ttf" />
   </ItemGroup>
 
+
+
   <ItemGroup>
-    <EmbeddedResource Include="Fonts\Fontello\font\fontello_3.ttf" />
+    <EmbeddedResource Include="Fonts\Fontello\font\fontello.woff2" />
+    <EmbeddedResource Include="Fonts\Fontello\font\fontello_4.ttf" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,10 +31,20 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Fonts\Fontello\font\fontello_4.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Resources\AppResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>AppResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ReadPicturePage.xaml.cs">
+      <DependentUpon>ReadPicturePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\PictureResult.xaml.cs">
+      <DependentUpon>PictureResult.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\KeyChainPage.xaml.cs">
       <DependentUpon>KeyChainPage.xaml</DependentUpon>

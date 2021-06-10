@@ -3,6 +3,7 @@ using System.Text;
 using Kit.Sql.Attributes;
 using Kit.Sql.Interfaces;
 using System.Security.Cryptography;
+using Kit;
 using Kit.Extensions;
 using Kit.Security.Encryption;
 
@@ -47,17 +48,18 @@ namespace RSAVault.Models
         public string Encrypt(string Value)
         {
             byte[] encrypted = Encoding.UTF8.GetBytes(Value);
-            string base_64 = Convert.ToBase64String(encrypted);
-            encrypted = Convert.FromBase64String(base_64);
             encrypted = Algorithm.Encrypt(encrypted, RSAEncryptionPadding.Pkcs1);
-            base_64 = Convert.ToBase64String(encrypted);
-            return base_64;
+            return Convert.ToBase64String(encrypted);
         }
         public string Decrypt(string Value)
         {
-            byte[] encrypted = Convert.FromBase64String(Value);
+            byte[] encrypted =Convert.FromBase64String(Value);
+            if (encrypted.Length < 128)
+            {
+                return string.Empty;
+            }
             encrypted = Algorithm.Decrypt(encrypted, RSAEncryptionPadding.Pkcs1);
-            string base_64 = Encoding.UTF8.GetString(encrypted);
+           string base_64 = Encoding.UTF8.GetString(encrypted);
             return base_64;
         }
         public static Key Create(int keySizeInBits = 4096) => new Key(keySizeInBits);

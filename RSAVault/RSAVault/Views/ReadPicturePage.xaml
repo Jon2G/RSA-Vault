@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:Kit.Forms.Controls;assembly=Kit.Forms"
+             xmlns:fonts="clr-namespace:RSAVault.Fonts;assembly=RSAVault"
+             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:resource="clr-namespace:RSAVault.Resources;assembly=RSAVault"
+             xmlns:viewModels="clr-namespace:RSAVault.ViewModels;assembly=RSAVault"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:converters="clr-namespace:Kit.Forms.Converters;assembly=Kit.Forms"
+             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Class="RSAVault.Views.ReadPicturePage" Title="{x:Static resource:AppResources.HidePicture}"
+             BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundDarkColor},Light={StaticResource BackgroundLightColor}}"
+             x:DataType="viewModels:ReadPicturePageViewModel" >
+    <ContentPage.Resources>
+        <converters:NegateConverter x:Key="NegateConverter"/>
+    </ContentPage.Resources>
+    <ContentPage.BindingContext>
+        <viewModels:ReadPicturePageViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout Padding="10" VerticalOptions="FillAndExpand">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Start" Margin="10" Spacing="20">
+                <ImageButton Command="{Binding PickFileCommand}" BackgroundColor="Transparent">
+                    <ImageButton.Source>
+                        <FontImageSource Color="{AppThemeBinding Dark={StaticResource LightTextColor},Light={StaticResource AccentColor}}"
+                                         FontFamily="{x:Static fonts:FontelloIcons.Font}" Glyph="{x:Static  fonts:FontelloIcons.Photo}"/>
+                    </ImageButton.Source>
+                </ImageButton>
+                <ImageButton Command="{Binding CleanCommand}" BackgroundColor="Transparent">
+                    <ImageButton.Source>
+                        <FontImageSource 
+                            Color="{AppThemeBinding Dark={StaticResource LightTextColor},Light={StaticResource AccentColor}}"
+                            FontFamily="{x:Static fonts:FontelloIcons.Font}" Glyph="{x:Static  fonts:FontelloIcons.TrashBin}"/>
+                    </ImageButton.Source>
+                </ImageButton>
+            </StackLayout>
+            <ScrollView VerticalOptions="FillAndExpand">
+                <StackLayout >
+                    <Label  FontAttributes="Bold" FontSize="18">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{x:Static resource:AppResources.Key}"/>
+                                <Span Text=":"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <pancakeView:PancakeView Margin="0,5" Padding="5"
+                                         xct:TouchEffect.NormalBackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundSecondaryDarkColor},Light={StaticResource BackgroundSecondaryLightColor}}"
+                                         xct:TouchEffect.PressedBackgroundColor="LightGray"
+                                         xct:TouchEffect.NativeAnimationColor="LightGray"
+                                         xct:TouchEffect.PressedScale="0.99" 
+                                         xct:TouchEffect.CommandParameter="{Binding .}"
+                                         xct:TouchEffect.Command="{Binding ChangeCertificateCommand}"
+                                         xct:TouchEffect.NativeAnimation="True">
+                        <StackLayout Orientation="Horizontal">
+                            <Image VerticalOptions="Center">
+                                <Image.Source>
+                                    <FontImageSource
+                                    Color="{StaticResource AccentColor}"
+                                    FontFamily="{x:Static fonts:FontelloIcons.Font}"
+                                    Glyph="{x:Static fonts:FontelloIcons.Key}"/>
+                                </Image.Source>
+                            </Image>
+                            <StackLayout Padding="10" VerticalOptions="CenterAndExpand">
+                                <Label FontSize="14" FontAttributes="Bold">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{x:Static resource:AppResources.Alias}"/>
+                                            <Span Text=" "/>
+                                            <Span Text="{Binding Key.Name}"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </pancakeView:PancakeView>
+
+                    <Label Text="{x:Static resource:AppResources.Text}" FontAttributes="Bold" FontSize="18"/>
+                    <controls:SelectableLabel Text="{Binding Text}" AutoSize="TextChanges"  VerticalOptions="FillAndExpand"/>
+                    <Label Text="{x:Static resource:AppResources.Image}" FontAttributes="Bold" FontSize="18"/>
+                    <pancakeView:PancakeView VerticalOptions="FillAndExpand">
+                        <Image VerticalOptions="FillAndExpand" 
+                               Source="{Binding Image}"/>
+                    </pancakeView:PancakeView>
+                </StackLayout>
+            </ScrollView>
+            <StackLayout Padding="10" HorizontalOptions="FillAndExpand">
+                <Button Text="{x:Static resource:AppResources.UnHide}"
+                        Command="{Binding CalculateCommand}"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

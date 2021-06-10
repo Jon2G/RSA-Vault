@@ -30,6 +30,10 @@ namespace RSAVault.ViewModels
         }
         private ICommand _NewKeyCommand;
         public ICommand NewKeyCommand => _NewKeyCommand ??= new Command(NewKey);
+        private ICommand _DeleteCommand;
+        public ICommand DeleteCommand => _DeleteCommand ??= new Command<KeyContainer>(Delete);
+        private ICommand _ShareCommand;
+        public ICommand ShareCommand => _ShareCommand ??= new Command<KeyContainer>(Share);
         private List<KeyContainer> _Keys;
         public List<KeyContainer> Keys
         {
@@ -63,7 +67,14 @@ namespace RSAVault.ViewModels
 
         public KeyChainPageViewModel()
         {
-           
+            KeyClickedCommand = new Command<KeyContainer>(KeyClicked);
+        }
+
+        private void KeyClicked(KeyContainer key)
+        {
+            Forms9Patch.Audio.PlaySoundEffect(SoundEffect.KeyClick, EffectMode.On);
+            HapticFeedback.Perform(HapticFeedbackType.Click);
+            Shell.Current.Navigation.PushAsync(new KeyPage(key));
         }
 
 
@@ -88,7 +99,15 @@ namespace RSAVault.ViewModels
         {
             Forms9Patch.Audio.PlaySoundEffect(SoundEffect.KeyClick, EffectMode.On);
             HapticFeedback.Perform(HapticFeedbackType.Click);
-            Shell.Current.Navigation.PushAsync(new CertificatePage());
+            Shell.Current.Navigation.PushAsync(new KeyPage());
         }
+        private void Delete(KeyContainer key)
+        {
+            KeyChain.Delete(key);
+           Task.Run(Refresh);
+        }
+
+        private void Share(KeyContainer key) => KeyChain.Share(key);
+
     }
 }

@@ -39,8 +39,6 @@ namespace RSAVault.ViewModels
         public ICommand CalculateCommand { get; set; }
         public ICommand TakePhotoCommand { get; set; }
         public ICommand CleanCommand { get; set; }
-        private ICommand shareCommand;
-        public ICommand ShareCommand => shareCommand ??= new Command(Share);
 
         private string _Text;
 
@@ -68,6 +66,7 @@ namespace RSAVault.ViewModels
 
         public FromPicturePageViewModel()
         {
+            this.Key = KeyChain.PersonalKey;
             this.PickFileCommand = new Command(PickFile);
             this.CalculateCommand = new Xamarin.Forms.Command<CachedImage>(Calculate);
             this.TakePhotoCommand = new Command(TakePhoto);
@@ -88,7 +87,12 @@ namespace RSAVault.ViewModels
             {
                 return;
             }
-
+            using (Acr.UserDialogs.UserDialogs.Instance.Loading(AppResources.HiddingPicture))
+            {
+                string text = this.Key.Encrypt(Text);
+                FileImageSource bitmap = await SteganographyHelper.EmbedText(Image, text);
+                await Shell.Current.Navigation.PushAsync(new PictureResult(new PictureResultViewModel(bitmap, text)));
+            }
         }
         private async void TakePhoto()
         {
@@ -164,10 +168,7 @@ namespace RSAVault.ViewModels
             FileInfo file = await pfile.LoadPhotoAsync();
             this.Image = (FileImageSource)FileImageSource.FromFile(file.FullName);
         }
-        public void Share()
-        {
 
-        }
         public async void ChangeCertificate()
         {
             Forms9Patch.Audio.PlaySoundEffect(SoundEffect.KeyClick, EffectMode.On);

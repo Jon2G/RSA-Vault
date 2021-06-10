@@ -10,6 +10,7 @@
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              xmlns:models="clr-namespace:RSAVault.Models;assembly=RSAVault"
              x:DataType="viewModels:NotesPageViewModel"
+             BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundDarkColor},Light={StaticResource BackgroundLightColor}}"
              x:Class="RSAVault.Views.NotesPage" Title="{x:Static resource:AppResources.Notes}">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Command="{Binding AddCommand}" >
@@ -30,10 +31,8 @@
                         <ViewCell>
                             <SwipeView MinimumHeightRequest="40">
                                 <SwipeView.LeftItems>
-                                    <SwipeItemView>
-
+                                    <SwipeItemView Command="{Binding DeleteCommand,Source={x:Reference Model}}" CommandParameter="{Binding .}">
                                         <ContentView VerticalOptions="FillAndExpand">
-
                                             <pancakeView:PancakeView Padding="5" CornerRadius="0" Margin="0" 
                                                                      VerticalOptions="FillAndExpand" 
                                                                      BackgroundColor="{StaticResource DangerRed}">
@@ -46,14 +45,14 @@
                                                                              Glyph="{x:Static fonts:FontelloIcons.TrashBin}"/>
                                                         </Image.Source>
                                                     </Image>
-                                                    <Label FontSize="18" FontAttributes="Bold" Text="Eliminar" TextColor="{StaticResource LightTextColor}"/>
+                                                    <Label FontSize="18" FontAttributes="Bold" Text="{x:Static resource:AppResources.Delete}" TextColor="{StaticResource LightTextColor}"/>
                                                 </StackLayout>
                                             </pancakeView:PancakeView>
                                         </ContentView>
 
 
                                     </SwipeItemView>
-                                    <SwipeItemView>
+                                    <SwipeItemView Command="{Binding ShareCommand,Source={x:Reference Model}}" CommandParameter="{Binding .}">
                                         <ContentView VerticalOptions="FillAndExpand">
                                             <pancakeView:PancakeView CornerRadius="0" 
                                                                      Padding="5" Margin="0" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource AccentColor}">
@@ -66,13 +65,11 @@
                                                                              Glyph="{x:Static fonts:FontelloIcons.Share}"/>
                                                         </Image.Source>
                                                     </Image>
-                                                    <Label FontSize="18" FontAttributes="Bold" Text="Share" TextColor="{StaticResource LightTextColor}"/>
+                                                    <Label FontSize="18" FontAttributes="Bold" Text="{x:Static resource:AppResources.Share}" TextColor="{StaticResource LightTextColor}"/>
                                                 </StackLayout>
                                             </pancakeView:PancakeView>
                                         </ContentView>
                                     </SwipeItemView>
-                                
-
                                 </SwipeView.LeftItems>
                                 <ContentView>
                                     <!--<controls:ArrowButton Title="Linea 1"  TitleFontSize="16"

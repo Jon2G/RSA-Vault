@@ -6,78 +6,80 @@
              xmlns:fonts="clr-namespace:RSAVault.Fonts;assembly=RSAVault"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              xmlns:viewModels="clr-namespace:RSAVault.ViewModels;assembly=RSAVault"
-             x:Class="RSAVault.Views.MainPage"
+             x:Class="RSAVault.Views.MainPage" 
+             BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundDarkColor},Light={StaticResource BackgroundLightColor}}"
              Title="{x:Static resource:AppResources.MainTitle}">
     <ContentPage.BindingContext>
         <viewModels:MainPageViewModel x:Name="Model"/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout Margin="5">
-            <controls:ArrowButton Title="{x:Static resource:AppResources.Keychain}"
+        <ScrollView>
+            <StackLayout Margin="5">
+                <Label FontAttributes="Bold" FontSize="18" Margin="5,3" Text="{x:Static resource:AppResources.Keys}"/>
+                <controls:ArrowButton Title="{x:Static resource:AppResources.Keychain}"
                                   IconHeightRequest="30"
                                   Command="{Binding CertificatesCommand,Source={x:Reference Model}}">
-                <controls:ArrowButton.Icon>
-                    <FontImageSource FontFamily="{x:Static fonts:FontelloIcons.Font}"
+                    <controls:ArrowButton.Icon>
+                        <FontImageSource FontFamily="{x:Static fonts:FontelloIcons.Font}"
                                      Glyph="{x:Static fonts:FontelloIcons.Key}" 
                                      Color="{AppThemeBinding Light={StaticResource DarkTextColor},Dark={StaticResource LightTextColor}}" Size="30"/>
-                </controls:ArrowButton.Icon>
-            </controls:ArrowButton>
+                    </controls:ArrowButton.Icon>
+                </controls:ArrowButton>
 
-            <controls:ArrowButton Title="{x:Static resource:AppResources.Notes}"  
+                <controls:ArrowButton Title="{x:Static resource:AppResources.Notes}"  
                                   SubTitle="{x:Static resource:AppResources.NotesSubtitle}"
                                   IconHeightRequest="30"
                                   Command="{Binding NotesCommand}">
-                <controls:ArrowButton.Icon>
-                    <FontImageSource FontFamily="{x:Static fonts:FontelloIcons.Font}"
+                    <controls:ArrowButton.Icon>
+                        <FontImageSource FontFamily="{x:Static fonts:FontelloIcons.Font}"
                                      Glyph="{x:Static fonts:FontelloIcons.Note}" 
                                      Color="{AppThemeBinding Light={StaticResource DarkTextColor},Dark={StaticResource LightTextColor}}" Size="30"/>
-                </controls:ArrowButton.Icon>
-            </controls:ArrowButton>
+                    </controls:ArrowButton.Icon>
+                </controls:ArrowButton>
 
-            <controls:ArrowButton Title="{x:Static resource:AppResources.FromText}" 
+                <controls:ArrowButton Title="{x:Static resource:AppResources.FromText}" 
                                   SubTitle="{x:Static  resource:AppResources.FromTextSubtitle}"
                                   IconHeightRequest="30"
                                   Command="{Binding FromTextCommand}">
-                <controls:ArrowButton.Icon>
-                    <FontImageSource FontFamily="{x:Static fonts:FontelloIcons.Font}"
+                    <controls:ArrowButton.Icon>
+                        <FontImageSource FontFamily="{x:Static fonts:FontelloIcons.Font}"
                                      Glyph="{x:Static fonts:FontelloIcons.ForeignLetters}" 
                                      Color="{AppThemeBinding Light={StaticResource DarkTextColor},Dark={StaticResource LightTextColor}}" Size="30"/>
-                </controls:ArrowButton.Icon>
-            </controls:ArrowButton>
-
-            <controls:ArrowButton Title="{x:Static resource:AppResources.HidePicture}"  
+                    </controls:ArrowButton.Icon>
+                </controls:ArrowButton>
+                <Label FontAttributes="Bold" FontSize="18" Margin="5,3" Text="{x:Static resource:AppResources.Steganography}"/>
+                <controls:ArrowButton Title="{x:Static resource:AppResources.HidePicture}"  
                                   SubTitle="{x:Static resource:AppResources.HidePictureSubtitle}"
                                   IconHeightRequest="30"
                                   Command="{Binding FromPictureCommand}">
-                <controls:ArrowButton.Icon>
-                    <FontImageSource FontFamily="{x:Static fonts:FontelloIcons.Font}"
+                    <controls:ArrowButton.Icon>
+                        <FontImageSource FontFamily="{x:Static fonts:FontelloIcons.Font}"
                                      Glyph="{x:Static fonts:FontelloIcons.Photo}" 
                                      Color="{AppThemeBinding Light={StaticResource DarkTextColor},Dark={StaticResource LightTextColor}}" Size="30"/>
-                </controls:ArrowButton.Icon>
-            </controls:ArrowButton>
+                    </controls:ArrowButton.Icon>
+                </controls:ArrowButton>
 
-
-
-
-            <!--<controls:ArrowButton Title="{x:Static resource:AppResources.FingerPrint}"  
+                <controls:ArrowButton Title="{x:Static resource:AppResources.FindInPicture}"  
+                                  SubTitle="{x:Static resource:AppResources.FindInPictureSubtitle}"
                                   IconHeightRequest="30"
-                                  Command="{Binding FingerPrintCommand}">
-                <controls:ArrowButton.Icon>
-                    <FontImageSource FontFamily="{x:Static fonts:FontelloIcons.Font}"
-                                     Glyph="{x:Static fonts:FontelloIcons.CircleLock}" 
+                                  Command="{Binding ReadPictureCommand}">
+                    <controls:ArrowButton.Icon>
+                        <FontImageSource FontFamily="{x:Static fonts:FontelloIcons.Font}"
+                                     Glyph="{x:Static fonts:FontelloIcons.Eye}" 
                                      Color="{AppThemeBinding Light={StaticResource DarkTextColor},Dark={StaticResource LightTextColor}}" Size="30"/>
-                </controls:ArrowButton.Icon>
-            </controls:ArrowButton>-->
+                    </controls:ArrowButton.Icon>
+                </controls:ArrowButton>
 
-            <ContentView>
-                <ContentView.Padding>
-                    <OnPlatform x:TypeArguments="Thickness">
-                        <On Platform="iOS">5</On>
-                        <On Platform="Android">3</On>
-                    </OnPlatform>
-                </ContentView.Padding>
-                <StackLayout >
-                    <Frame  Padding="5"
+                <Label FontAttributes="Bold" FontSize="18" Margin="5,3" Text="{x:Static resource:AppResources.OtherOptions}"/>
+                <ContentView>
+                    <ContentView.Padding>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <On Platform="iOS">5</On>
+                            <On Platform="Android">3</On>
+                        </OnPlatform>
+                    </ContentView.Padding>
+                    <StackLayout >
+                        <Frame  Padding="5"
                     BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundSecondaryDarkColor},Light={StaticResource BackgroundSecondaryLightColor}}"
                    xct:TouchEffect.NormalBackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundSecondaryDarkColor},Light={StaticResource BackgroundSecondaryLightColor}}"
                    xct:TouchEffect.PressedBackgroundColor="LightGray"
@@ -85,47 +87,49 @@
                    xct:TouchEffect.PressedScale="0.99" VerticalOptions="FillAndExpand"
                    xct:TouchEffect.Command="{Binding FingerPrintCommand}"
                    xct:TouchEffect.NativeAnimation="True" >
-                        <Grid ColumnDefinitions="Auto,*,Auto" Margin="0">
+                            <Grid ColumnDefinitions="Auto,*,Auto" Margin="0">
 
-                            <Switch IsToggled="{Binding Settings.IsFingerPrintActive}" ThumbColor="{AppThemeBinding Dark={StaticResource BackgroundSecondaryDarkColor},Light={StaticResource BackgroundSecondaryLightColor}}"/>
+                                <Switch IsToggled="{Binding Settings.IsFingerPrintActive}" InputTransparent="True"
+                                        ThumbColor="{AppThemeBinding Dark={StaticResource DisabledDarkAccentColor},Light={StaticResource DisabledLightAccentColor}}"/>
 
 
-                            <StackLayout Margin="10,5" Grid.Column="1">
-                                <Label Text="{x:Static resource:AppResources.FingerPrint}"  />
-                            </StackLayout>
+                                <StackLayout Margin="10,5" Grid.Column="1">
+                                    <Label Text="{x:Static resource:AppResources.FingerPrint}"  />
+                                </StackLayout>
 
-                            <Image Margin="10,0" Grid.Column="2" VerticalOptions="CenterAndExpand" IsVisible="{Binding IsArrowVisible}">
-                                <Image.Source>
-                                    <FontImageSource Size="30"
+                                <Image Margin="10,0" Grid.Column="2" VerticalOptions="CenterAndExpand" IsVisible="{Binding IsArrowVisible}">
+                                    <Image.Source>
+                                        <FontImageSource Size="30"
                                              Glyph="{x:Static fonts:FontelloIcons.CircleLock}"  
                                              FontFamily="{x:Static fonts:FontelloIcons.Font}" 
-                                             Color="{StaticResource DarkTextColor}"/>
-                                </Image.Source>
-                            </Image>
-                            <Label />
-                        </Grid>
-                    </Frame>
-                </StackLayout>
-            </ContentView>
-            <controls:ArrowButton Title="{x:Static resource:AppResources.ChangeLanguage}"  
+                                             Color="{AppThemeBinding Light={StaticResource DarkTextColor},Dark={StaticResource LightTextColor}}"/>
+                                    </Image.Source>
+                                </Image>
+                                <Label />
+                            </Grid>
+                        </Frame>
+                    </StackLayout>
+                </ContentView>
+                <controls:ArrowButton Title="{x:Static resource:AppResources.ChangeLanguage}"  
                                   IconHeightRequest="30"
                                   Command="{Binding ChangeLanguajeCommand}">
-                <controls:ArrowButton.Icon>
-                    <FontImageSource FontFamily="{x:Static fonts:FontelloIcons.Font}"
+                    <controls:ArrowButton.Icon>
+                        <FontImageSource FontFamily="{x:Static fonts:FontelloIcons.Font}"
                                      Glyph="{x:Static fonts:FontelloIcons.Globe}" 
                                      Color="{AppThemeBinding Light={StaticResource DarkTextColor},Dark={StaticResource LightTextColor}}" Size="30"/>
-                </controls:ArrowButton.Icon>
-            </controls:ArrowButton>
+                    </controls:ArrowButton.Icon>
+                </controls:ArrowButton>
 
-            <controls:ArrowButton Title="{x:Static resource:AppResources.AboutUs}" 
+                <controls:ArrowButton Title="{x:Static resource:AppResources.AboutUs}" 
                                   IconHeightRequest="30"
                                   Command="{Binding AboutCommand}">
-                <controls:ArrowButton.Icon>
-                    <FontImageSource FontFamily="{x:Static fonts:FontelloIcons.Font}"
+                    <controls:ArrowButton.Icon>
+                        <FontImageSource FontFamily="{x:Static fonts:FontelloIcons.Font}"
                                      Glyph="{x:Static fonts:FontelloIcons.Hearth}" 
                                      Color="{AppThemeBinding Light={StaticResource DarkTextColor},Dark={StaticResource LightTextColor}}" Size="30"/>
-                </controls:ArrowButton.Icon>
-            </controls:ArrowButton>
-        </StackLayout>
+                    </controls:ArrowButton.Icon>
+                </controls:ArrowButton>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

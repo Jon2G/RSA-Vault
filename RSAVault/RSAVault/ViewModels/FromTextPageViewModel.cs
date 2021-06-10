@@ -1,14 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Windows.Input;
+using System.Xml;
 using Forms9Patch;
+using Kit;
+using Kit.Forms.Extensions;
 using Kit.Model;
 
 using RSAVault.Models;
+using RSAVault.Resources;
 using RSAVault.Views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration.TizenSpecific;
 
 namespace RSAVault.ViewModels
 {
@@ -47,7 +53,7 @@ namespace RSAVault.ViewModels
                 Raise(() => Encrypted);
             }
         }
-        
+
         private KeyContainer _Key;
 
         public KeyContainer Key
@@ -56,7 +62,7 @@ namespace RSAVault.ViewModels
             set
             {
                 _Key = value;
-                Raise(()=> Key);
+                Raise(() => Key);
             }
         }
         public FromTextPageViewModel()
@@ -65,18 +71,49 @@ namespace RSAVault.ViewModels
         }
         public async void SaveAsNote()
         {
-            var note = new Note() { Text = this.Text };
+            this.Key = KeyChain.PersonalKey;
+            Update();
             //save
             await Shell.Current.Navigation.PopToRootAsync(true);
-            await Shell.Current.Navigation.PushAsync(new NotePage(note), true);
+            await Shell.Current.Navigation.PushAsync(new NotePage(new Note() { Text = this.Encrypted }), true);
         }
-        public void Share()
+        public async void Share()
         {
+            if (!await Permisos.RequestStorage())
+            {
+                Acr.UserDialogs.UserDialogs.Instance.Alert(AppResources.HasDeniedStorage);
+                return;
+            }
+            FileInfo file = new FileInfo(Path.Combine(Tools.Instance.TemporalPath, $"{Guid.NewGuid():N}.txt"));
+            if (file.Exists)
+            {
+                file.Delete();
+            }
+            using (FileStream mStream = new FileStream(file.FullName, FileMode.OpenOrCreate))
+            {
+                using (TextWriter writer = new StreamWriter(mStream, Encoding.UTF8))
+                {
+                    try
+                    {
+                        await writer.WriteAsync(this.Encrypted);
+                        await writer.FlushAsync();
+                        await mStream.FlushAsync();
 
+                    }
+                    catch (XmlException ex)
+                    {
+                        Log.Logger.Error(ex, "KeyChain.Share");
+                    }
+                }
+            }
+
+            ShareFileRequest request = new ShareFileRequest(new ShareFile(file.FullName));
+            await Xamarin.Essentials.Share.RequestAsync(request);
         }
         private void Update()
         {
             this.Encrypted = Key.Encrypt(Text);
+            int count = this.Encrypted.Length;
         }
         public async void ChangeKey()
         {
@@ -84,7 +121,7 @@ namespace RSAVault.ViewModels
             HapticFeedback.Perform(HapticFeedbackType.Click);
             var certificates = new KeysPage
             {
-                Model = {KeyClickedCommand = new Command<KeyContainer>(ChangeKey)}
+                Model = { KeyClickedCommand = new Command<KeyContainer>(ChangeKey) }
             };
             await Shell.Current.Navigation.PushAsync(certificates, true);
         }
@@ -92,7 +129,7 @@ namespace RSAVault.ViewModels
         {
             Forms9Patch.Audio.PlaySoundEffect(SoundEffect.KeyClick, EffectMode.On);
             HapticFeedback.Perform(HapticFeedbackType.Click);
-            await Shell.Current.Navigation.PopAsync( true);
+            await Shell.Current.Navigation.PopAsync(true);
             this.Key = key;
         }
     }

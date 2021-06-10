@@ -1,11 +1,15 @@
-﻿using System.Threading;
+﻿using System.IO;
+using System.Threading;
 using System.Windows.Input;
 using Forms9Patch;
+using Kit.Forms.Extensions;
+using Kit.Forms.Services;
 using Kit.Model;
 using RSAVault.Resources;
 using RSAVault.Views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using ImageSource = Xamarin.Forms.ImageSource;
 using Settings = RSAVault.Models.Settings;
 
 namespace RSAVault.ViewModels
@@ -20,6 +24,8 @@ namespace RSAVault.ViewModels
         public ICommand FromTextCommand => _FromTextCommand ??= new Command(FromText);
         private ICommand _FromPictureCommand;
         public ICommand FromPictureCommand => _FromPictureCommand ??= new Command(FromPicture);
+        private ICommand _ReadPictureCommand;
+        public ICommand ReadPictureCommand => _ReadPictureCommand ??= new Command(ReadPicture);
         private ICommand _FingerPrintCommand;
         public ICommand FingerPrintCommand => _FingerPrintCommand ??= new Command(FingerPrint);
         private ICommand _AboutCommand;
@@ -56,6 +62,8 @@ namespace RSAVault.ViewModels
 
         private async void FromPicture() => await Shell.Current.Navigation.PushAsync(new FromPicturePage(), true);
 
+        private async void ReadPicture()=> await Shell.Current.Navigation.PushAsync(new ReadPicturePage(), true);
+
         private async void About() => await Shell.Current.Navigation.PushAsync(new AboutPage(), true);
 
         private void FingerPrint()
@@ -63,6 +71,10 @@ namespace RSAVault.ViewModels
             Forms9Patch.Audio.PlaySoundEffect(SoundEffect.KeyClick, EffectMode.On);
             HapticFeedback.Perform(HapticFeedbackType.Click);
             this.Settings.IsFingerPrintActive = !this.Settings.IsFingerPrintActive;
+            if (this.Settings.IsFingerPrintActive)
+            {
+                this.Settings.IsFingerPrintAvaible();
+            }
         }
 
         private void ChangeLanguaje()

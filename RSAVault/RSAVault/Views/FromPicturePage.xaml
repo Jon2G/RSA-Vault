@@ -10,6 +10,7 @@
              xmlns:converters="clr-namespace:Kit.Forms.Converters;assembly=Kit.Forms"
              xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              x:Class="RSAVault.Views.FromPicturePage" Title="{x:Static resource:AppResources.HidePicture}"
+             BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundDarkColor},Light={StaticResource BackgroundLightColor}}"
              x:DataType="viewModels:FromPicturePageViewModel" >
     <ContentPage.Resources>
         <converters:NegateConverter x:Key="NegateConverter"/>
@@ -97,21 +98,11 @@
 
                 </StackLayout>
             </ScrollView>
-            <StackLayout Padding="10" Orientation="Horizontal">
-                <controls:ArrowButton Title="{x:Static resource:AppResources.Share}" VerticalOptions="End"
-                                      Command="{Binding ShareCommand}"
-                                      IconHeightRequest="30">
-                    <controls:ArrowButton.Icon>
-                        <FontImageSource FontFamily="{x:Static fonts:FontelloIcons.Font}"
-                                     Glyph="{x:Static fonts:FontelloIcons.Share}" 
-                                     Color="{AppThemeBinding Dark={StaticResource PrimaryDarkColor},Light={StaticResource PrimaryLightColor}}" Size="30"/>
-                    </controls:ArrowButton.Icon>
-                </controls:ArrowButton>
-
+            <StackLayout Padding="10" HorizontalOptions="FillAndExpand">
                 <Button Text="{x:Static resource:AppResources.Hide}"
-                    IsEnabled="{Binding IsLoading,Converter={StaticResource NegateConverter},Source={x:Reference Image}}"
-                    Command="{Binding CalculateCommand}"
-                    CommandParameter="{Binding Source={x:Reference Image}}"/>
+                        IsEnabled="{Binding IsLoading,Converter={StaticResource NegateConverter},Source={x:Reference Image}}"
+                        Command="{Binding CalculateCommand}"
+                        CommandParameter="{Binding Source={x:Reference Image}}"/>
             </StackLayout>
         </StackLayout>
        

@@ -10,7 +10,7 @@ using Xamarin.Forms.Xaml;
 namespace RSAVault.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class FromTextPage : ContentPage
+    public partial class FromTextPage 
     {
         public FromTextPage()
         {

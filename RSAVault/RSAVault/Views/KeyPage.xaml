@@ -4,17 +4,21 @@
              xmlns:resource="clr-namespace:RSAVault.Resources;assembly=RSAVault"
              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:viewModels="clr-namespace:RSAVault.ViewModels;assembly=RSAVault"
-             x:Class="RSAVault.Views.CertificatePage"
+             x:Class="RSAVault.Views.KeyPage"
              x:DataType="viewModels:KeyPageViewModel"
              Title="{x:Static resource:AppResources.NewKey}">
-    <ContentPage.BindingContext>
-        <viewModels:KeyPageViewModel x:Name="Model"/>
-    </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout Padding="10"  VerticalOptions="FillAndExpand" >
-            <Label Text="{x:Static resource:AppResources.Alias}" FontAttributes="Bold" FontSize="16"/>
-            <Entry Text="{Binding Key.Name}" FontSize="16"/>
-            <Editor Text="{Binding Key.PublicKey}" VerticalOptions="FillAndExpand"/>
-        </StackLayout>
+        <ScrollView VerticalOptions="FillAndExpand">
+            <StackLayout Padding="10"  VerticalOptions="FillAndExpand" >
+                <Label Text="{x:Static resource:AppResources.Alias}" FontAttributes="Bold" FontSize="16"/>
+                <Entry Text="{Binding Key.Name}" FontSize="16"/>
+                <Label Text="{x:Static resource:AppResources.Modulus}" FontAttributes="Bold" FontSize="16"/>
+                <Label Text="{Binding Key.Modulus}"/>
+                <Label Text="{x:Static resource:AppResources.PrivateKeyExponent}" FontAttributes="Bold" FontSize="16"/>
+                <Label Text="{Binding Key.PrivateKeyExponent}"/>
+                <Label Text="{x:Static resource:AppResources.PublicKeyExponent}"  FontAttributes="Bold" FontSize="16"/>
+                <Label Text="{Binding Key.PublicKeyExponent}"/>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:Kit.Forms.Controls;assembly=Kit.Forms"
+             xmlns:fonts="clr-namespace:RSAVault.Fonts;assembly=RSAVault"
+             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:resource="clr-namespace:RSAVault.Resources;assembly=RSAVault"
+             xmlns:viewModels="clr-namespace:RSAVault.ViewModels;assembly=RSAVault"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:converters="clr-namespace:Kit.Forms.Converters;assembly=Kit.Forms"
+             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Class="RSAVault.Views.PictureResult" 
+             BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundDarkColor},Light={StaticResource BackgroundLightColor}}"
+             Title="{x:Static resource:AppResources.HidePicture}"
+             x:DataType="viewModels:PictureResultViewModel" >
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="FillAndExpand">
+         <ScrollView VerticalOptions="FillAndExpand">
+             <StackLayout Padding="10" VerticalOptions="FillAndExpand">
+                 <Image Source="{Binding Image}"/>
+                 <Label Text="{x:Static resource:AppResources.Encrypted}" FontAttributes="Bold" FontSize="18"/>
+                 <controls:SelectableLabel  Text="{Binding Encrypted}" AutoSize="TextChanges" VerticalOptions="FillAndExpand"/>
+             </StackLayout>
+         </ScrollView>
+         <controls:ArrowButton Title="{x:Static resource:AppResources.Share}" VerticalOptions="End"
+                               Command="{Binding ShareCommand}"
+                               IconHeightRequest="30">
+             <controls:ArrowButton.Icon>
+                 <FontImageSource FontFamily="{x:Static fonts:FontelloIcons.Font}"
+                                  Glyph="{x:Static fonts:FontelloIcons.Share}" 
+                                  Color="{AppThemeBinding Dark={StaticResource PrimaryDarkColor},Light={StaticResource PrimaryLightColor}}" Size="30"/>
+             </controls:ArrowButton.Icon>
+         </controls:ArrowButton>
+        </StackLayout>
+
+
+    </ContentPage.Content>
+</ContentPage>

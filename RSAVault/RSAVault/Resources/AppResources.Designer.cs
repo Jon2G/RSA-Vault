@@ -187,7 +187,7 @@ namespace RSAVault.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Esta App fue desarrollada con la fines didacticos al ilustrar de forma sencilla la entropía de Shannon..
+        ///   Looks up a localized string similar to Esta App fue desarrollada con fines didacticos para profundizar en los temas de RSA y esteganográfia.
         /// </summary>
         internal static string DevelopedFor {
             get {
@@ -228,6 +228,24 @@ namespace RSAVault.Resources {
         internal static string Expire {
             get {
                 return ResourceManager.GetString("Expire", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leer texto oculto en una imagen.
+        /// </summary>
+        internal static string FindInPicture {
+            get {
+                return ResourceManager.GetString("FindInPicture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to *Apartir de imagenes generadas por esta aplicación.
+        /// </summary>
+        internal static string FindInPictureSubtitle {
+            get {
+                return ResourceManager.GetString("FindInPictureSubtitle", resourceCulture);
             }
         }
         
@@ -318,6 +336,15 @@ namespace RSAVault.Resources {
         internal static string HasDeniedStorage {
             get {
                 return ResourceManager.GetString("HasDeniedStorage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocultando y encriptando texto....
+        /// </summary>
+        internal static string HiddingPicture {
+            get {
+                return ResourceManager.GetString("HiddingPicture", resourceCulture);
             }
         }
         
@@ -439,6 +466,15 @@ namespace RSAVault.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Módulo:.
+        /// </summary>
+        internal static string Modulus {
+            get {
+                return ResourceManager.GetString("Modulus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Meses.
         /// </summary>
         internal static string Months {
@@ -523,6 +559,15 @@ namespace RSAVault.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Otros ajustes.
+        /// </summary>
+        internal static string OtherOptions {
+            get {
+                return ResourceManager.GetString("OtherOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contraseña: .
         /// </summary>
         internal static string Password {
@@ -546,6 +591,24 @@ namespace RSAVault.Resources {
         internal static string Privacy {
             get {
                 return ResourceManager.GetString("Privacy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exponente privado:.
+        /// </summary>
+        internal static string PrivateKeyExponent {
+            get {
+                return ResourceManager.GetString("PrivateKeyExponent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exponente público:.
+        /// </summary>
+        internal static string PublicKeyExponent {
+            get {
+                return ResourceManager.GetString("PublicKeyExponent", resourceCulture);
             }
         }
         
@@ -595,6 +658,15 @@ namespace RSAVault.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Esteganografía.
+        /// </summary>
+        internal static string Steganography {
+            get {
+                return ResourceManager.GetString("Steganography", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tomar fotografía.
         /// </summary>
         internal static string TakePhoto {
@@ -618,6 +690,15 @@ namespace RSAVault.Resources {
         internal static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Desocultar.
+        /// </summary>
+        internal static string UnHide {
+            get {
+                return ResourceManager.GetString("UnHide", resourceCulture);
             }
         }
         

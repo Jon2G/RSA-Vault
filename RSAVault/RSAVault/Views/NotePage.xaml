@@ -8,6 +8,7 @@
              xmlns:viewmodels="clr-namespace:RSAVault.ViewModels"
              x:DataType="viewmodels:NotePageViewModel"
              x:Class="RSAVault.Views.NotePage" x:Name="Me"
+             BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundDarkColor},Light={StaticResource BackgroundLightColor}}"
              Title="{Binding Note.Title}">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Lock" Command="{Binding LockCommand,Source={x:Reference Me}}"/>
@@ -23,7 +24,7 @@
             <StackLayout Padding="10">
                 <Entry  HorizontalOptions="FillAndExpand" MaxLength="30" Placeholder="{x:Static resource:AppResources.Title}" Text="{Binding Note.Title}" FontAttributes="Bold" FontSize="17"/>
                 <Editor Text="{Binding Note.Text}" x:Name="Editor"
-                    VerticalOptions="FillAndExpand" FontSize="16" MaxLength="1000"
+                    VerticalOptions="FillAndExpand" FontSize="16" MaxLength="128"
                     HorizontalOptions="FillAndExpand" />
             </StackLayout>
             <StackLayout VerticalOptions="FillAndExpand" InputTransparent="True"

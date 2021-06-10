@@ -7,6 +7,7 @@
              xmlns:resource="clr-namespace:RSAVault.Resources;assembly=RSAVault"
              xmlns:controls="clr-namespace:Kit.Forms.Controls;assembly=Kit.Forms"
              Title="{x:Static resource:AppResources.AboutUs}"
+             BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundDarkColor},Light={StaticResource BackgroundLightColor}}"
              x:DataType="vm:AboutPageViewModel">
     <ContentPage.BindingContext>
         <vm:AboutPageViewModel />
@@ -46,24 +47,23 @@
                                           
                                               IsArrowVisible="False" Command="{Binding GitHubCommand}">
                         <controls:ArrowButton.Icon>
-                            <FontImageSource Color="Black" FontFamily="{x:Static fonts:FontelloIcons.Font}" Glyph="{x:Static fonts:FontelloIcons.Github}"/>
+                            <FontImageSource Color="{AppThemeBinding Light=Black,Dark=White}" FontFamily="{x:Static fonts:FontelloIcons.Font}" Glyph="{x:Static fonts:FontelloIcons.Github}"/>
                         </controls:ArrowButton.Icon>
                     </controls:ArrowButton>
                     <StackLayout Margin="0,0">
                         <controls:ArrowButton Title="{x:Static resource:AppResources.ReportBug}"
                                               TextColor="{AppThemeBinding Light=Black,Dark=White}"
-                                              
                                               IsArrowVisible="False" Command="{Binding ReportBugCommand}">
                             <controls:ArrowButton.Icon>
-                                <FontImageSource Color="Black" FontFamily="{x:Static fonts:FontelloIcons.Font}" Glyph="{x:Static fonts:FontelloIcons.Github}"/>
+                                <FontImageSource Color="{AppThemeBinding Light=Black,Dark=White}"
+                                                 FontFamily="{x:Static fonts:FontelloIcons.Font}" Glyph="{x:Static fonts:FontelloIcons.Github}"/>
                             </controls:ArrowButton.Icon>
                         </controls:ArrowButton>
                         <controls:ArrowButton Title="{x:Static resource:AppResources.RequestFeature}"
                                               TextColor="{AppThemeBinding Light=Black,Dark=White}"
-                                              
-                                                  IsArrowVisible="False" Command="{Binding RequestFeatureCommand}">
+                                              IsArrowVisible="False" Command="{Binding RequestFeatureCommand}">
                             <controls:ArrowButton.Icon>
-                                <FontImageSource Color="Black" FontFamily="{x:Static fonts:FontelloIcons.Font}" Glyph="{x:Static fonts:FontelloIcons.Github}"/>
+                                <FontImageSource Color="{AppThemeBinding Light=Black,Dark=White}" FontFamily="{x:Static fonts:FontelloIcons.Font}" Glyph="{x:Static fonts:FontelloIcons.Github}"/>
                             </controls:ArrowButton.Icon>
                         </controls:ArrowButton>
                     </StackLayout>
@@ -90,23 +90,6 @@
                                           IsArrowVisible="False" Command="{Binding BuyMeACoffeCommand}"/>
 
                     <Label Text="{x:Static resource:AppResources.Licenses}"/>
-                    <controls:ArrowButton 
-                                          
-                                          TextColor="{AppThemeBinding Light=Black,Dark=White}"
-                                          IsArrowVisible="False" Title="A Mathematical Theory of Communication" 
-                                          SubTitle="Bell System Technical Journal. July-1948"/>
-
-                    <controls:ArrowButton 
-                        
-                        TextColor="{AppThemeBinding Light=Black,Dark=White}"
-                        IsArrowVisible="False" Title="Sample coins File Ephesos_620-600_BC.jpg" 
-                                              SubTitle="https://www.cngcoins.com/"/>
-
-                    <controls:ArrowButton 
-                        
-                        TextColor="{AppThemeBinding Light=Black,Dark=White}"
-                            IsArrowVisible="False" Title="App icon designed by Freepik from Flaticon" 
-                                              SubTitle="https://www.flaticon.com/matrix_3815250"/>
 
                     <controls:ArrowButton 
                         

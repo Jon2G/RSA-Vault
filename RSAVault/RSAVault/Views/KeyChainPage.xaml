@@ -9,6 +9,7 @@
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              xmlns:models="clr-namespace:RSAVault.Models;assembly=RSAVault"
              x:Name="Me"
+             BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundDarkColor},Light={StaticResource BackgroundLightColor}}"
              x:Class="RSAVault.Views.KeysPage" x:DataType="viewModels:KeyChainPageViewModel"
              Title="{x:Static resource:AppResources.Keychain}">
     <ContentPage.BindingContext>
@@ -26,7 +27,7 @@
                                 <ContentView Margin="0,5" VerticalOptions="FillAndExpand">
                                     <SwipeView >
                                         <SwipeView.LeftItems>
-                                            <SwipeItemView>
+                                            <SwipeItemView Command="{Binding ShareCommand,Source={x:Reference Model}}" CommandParameter="{Binding .}">
                                                 <ContentView VerticalOptions="FillAndExpand">
                                                     <pancakeView:PancakeView Padding="5" Margin="5" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource AccentColor}">
                                                         <StackLayout VerticalOptions="CenterAndExpand">
@@ -43,10 +44,7 @@
                                                     </pancakeView:PancakeView>
                                                 </ContentView>
                                             </SwipeItemView>
-                                            <SwipeItemView>
-
-
-
+                                            <SwipeItemView Command="{Binding DeleteCommand,Source={x:Reference Model}}" CommandParameter="{Binding .}">
                                                 <pancakeView:PancakeView  Padding="5"  Margin="5" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource DangerRed}">
                                                     <StackLayout VerticalOptions="CenterAndExpand">
                                                         <Image>

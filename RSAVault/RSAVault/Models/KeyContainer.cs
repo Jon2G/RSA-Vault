@@ -16,12 +16,14 @@ namespace RSAVault.Models
         public Guid Guid { get; set; }
 
         public string Name { get; set; }
-        [Ignore]
-        public string PrivateKey { get; set; }
-        [Ignore]
-        public string PublicKey { get; set; }
-        [Ignore]
-        public string Modulus { get; set; }
+
+
+
+        public string Modulus => this.Key.Modulus;
+        public string PrivateKeyExponent => this.Key.PrivateKeyExponent;
+        public string PublicKeyExponent => this.Key.PublicKeyExponent;
+
+
         public string XML
         {
             get => Key?.XML;
@@ -30,9 +32,6 @@ namespace RSAVault.Models
                 if (!string.IsNullOrEmpty(value))
                 {
                     this.Key = Key.Create(value);
-                    PrivateKey = Key.PrivateKeyExponent;
-                    PublicKey = Key.PublicKeyExponent;
-                    Modulus = Key.Modulus;
                 }
             }
 
@@ -52,14 +51,9 @@ namespace RSAVault.Models
             //byte[] crypted =this.Key.Encrypt(TestString);
 
 
-            string encrypted = this.Key.Encrypt(TestString);
-            string s_crypted = this.Key.Decrypt(encrypted);
-            if (encrypted == s_crypted)
-            {
-                string decrypted = this.Key.Decrypt(encrypted);
-                return TestString == decrypted;
-            }
-            return false;
+            string encrypted = Encrypt(TestString);
+            string s_crypted = Decrypt(encrypted);
+            return TestString == s_crypted;
 
         }
 

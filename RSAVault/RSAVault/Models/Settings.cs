@@ -9,11 +9,12 @@ using RSAVault.Resources;
 
 namespace RSAVault.Models
 {
-    public class Settings : ModelBase,IGuid
+    [Preserve]
+    public class Settings : ModelBase, IGuid
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
-      
+
         private bool _IsFingerPrintActive;
         public bool IsFingerPrintActive
         {
@@ -22,16 +23,12 @@ namespace RSAVault.Models
             {
                 _IsFingerPrintActive = value;
                 Raise(() => IsFingerPrintActive);
-                if (value)
-                {
-                    IsFingerPrintAvaible();
-                }
             }
         }
 
-        private async void IsFingerPrintAvaible()
+        public async void IsFingerPrintAvaible()
         {
-            if (!await CrossFingerprint.Current.IsAvailableAsync(true)&&this.IsFingerPrintActive)
+            if (!await CrossFingerprint.Current.IsAvailableAsync(true) && this.IsFingerPrintActive)
             {
                 this.IsFingerPrintActive = false;
                 Acr.UserDialogs.UserDialogs.Instance.Alert(AppResources.FingerPrintNotAvaible, AppResources.Alert);
@@ -42,11 +39,12 @@ namespace RSAVault.Models
                 this.IsFingerPrintActive = false;
                 Acr.UserDialogs.UserDialogs.Instance.Alert(AppResources.AuthFailed, AppResources.Alert);
             }
+            Save();
         }
 
         public Settings()
         {
-            this.IsFingerPrintActive =false;
+            this.IsFingerPrintActive = false;
         }
         public Guid Guid { get; set; }
         public void Save()

@@ -14,7 +14,7 @@
             <Color x:Key="AccentColor">#0277bd</Color>
             <Color x:Key="SecondaryAccentColor">#4f83cc</Color>
 
-            <Color x:Key="PrimaryDarkColor">#002f6c</Color>
+            <Color x:Key="PrimaryDarkColor">#01579b</Color>
             <Color x:Key="PrimaryLightColor">#01579b</Color>
 
             <Color x:Key="BackgroundSecondaryLightColor">WhiteSmoke</Color>
@@ -47,7 +47,8 @@
 
 
             <Style TargetType="Label">
-                <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource LightTextColor},Light={StaticResource DarkTextColor}}"/>
+                <Setter Property="TextColor" 
+                        Value="{AppThemeBinding Dark={StaticResource LightTextColor},Light={StaticResource DarkTextColor}}"/>
             </Style>
             <Style TargetType="ImageButton">
                 <Setter Property="VisualStateManager.VisualStateGroups">

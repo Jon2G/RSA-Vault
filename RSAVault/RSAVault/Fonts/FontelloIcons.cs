@@ -1,7 +1,7 @@
 ﻿using RSAVault.Fonts;
 using Xamarin.Forms;
 
-[assembly: ExportFont("fontello_3.ttf", Alias =FontelloIcons.Font)]
+[assembly: ExportFont("fontello_4.ttf", Alias =FontelloIcons.Font)]
 namespace RSAVault.Fonts
 {
     public static class FontelloIcons
@@ -26,6 +26,7 @@ namespace RSAVault.Fonts
         public const string ForeignLetters = "\uE80A";
         public const string CircleLock = "\uF23E";
         public const string Add = "\uE80B";
+        public const string Eye = "\uE80C";
 
         public const string Font = "FontIcon";
     }

@@ -24,15 +24,15 @@ namespace RSAVault.Views
             InitializeComponent();
         }
 
- 
+
         protected override async void OnAppearing()
         {
             base.OnAppearing();
 
             if (!this.Model.Note.IsEmpty)
             {
+                this.Editor.MaxLength = this.Model.Note.Text.Length;
                 this.Editor.Text = this.Model.Note.Text;
-
                 await this.LockSeal.FadeTo(.5, 1000);
                 Vault.Decrypt(this.Model.Note);
                 this.Model.IsLocked = false;
@@ -43,17 +43,23 @@ namespace RSAVault.Views
                 this.Editor.Text += "@";
                 //await Task.Delay(100);
                 this.Editor.Text = previoustext;
+                this.Editor.MaxLength = 128;
             }
-            else {
+            else
+            {
                 this.Model.IsLocked = false;
-                await this.LockSeal.FadeTo(0, 1000); 
+                await this.LockSeal.FadeTo(0, 1000);
                 this.Editor.Focus();
             }
         }
         private async void Lock()
         {
             await this.LockSeal.FadeTo(.5, 1000);
-            Vault.SaveNote(this.Model.Note);
+            if (!Model.Note.IsEmpty)
+            {
+                Vault.SaveNote(this.Model.Note);
+            }
+
             this.Model.IsLocked = true;
             await this.LockSeal.FadeTo(1, 1000);
             await Shell.Current.Navigation.PopAsync(true);

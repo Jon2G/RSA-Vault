@@ -46,9 +46,9 @@ namespace RSAVault.ViewModels
             }
 
         }
-        private void ReportBug() => OpenBrowser("https://github.com/Jouna77/ShannonEntropyApp/issues/new?assignees=Jouna77&labels=bug&template=bug_report.md&title=");
-        private void RequestFeature() => OpenBrowser("https://github.com/Jouna77/ShannonEntropyApp/issues/new?assignees=Jouna77&labels=enhancement&template=feature_request.md&title=");
-        private void GitHub() => OpenBrowser("https://github.com/Jouna77/ShannonEntropyApp");
+        private void ReportBug() => OpenBrowser("https://github.com/Jon2G/RSA-Vault/issues/new?assignees=&labels=&template=bug_report.md&title=");
+        private void RequestFeature() => OpenBrowser("https://github.com/Jon2G/RSA-Vault/issues/new?assignees=&labels=&template=feature_request.md&title=");
+        private void GitHub() => OpenBrowser("https://github.com/Jon2G/RSA-Vault");
         private void Xamarin() => OpenBrowser("https://dotnet.microsoft.com/learn/xamarin/what-is-xamarin");
 
         private void BuyMeACoffe() => OpenBrowser("https://www.buymeacoffee.com/JonGG");

@@ -27,9 +27,10 @@ namespace RSAVault.ViewModels
             }
         }
 
-        public KeyPageViewModel()
+        public KeyPageViewModel(KeyContainer Key)
         {
-            this.Key = KeyChain.MakeKey(string.Empty,RSAEncryptionPadding.Pkcs1);
+            this.Key = Key;
+
         }
     }
 }
